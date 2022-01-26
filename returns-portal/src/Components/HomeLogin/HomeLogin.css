@@ -1,5 +1,50 @@
-.HomeLoginForm{
+
+label{
+    display: block; 
+    margin-bottom: 7.5px; 
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 20px;
+} 
+
+input{
+    display: block;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 16px;  
+    width: 200px;
+    border: 2px solid rgb(240, 191, 76);
+} 
+
+.Header{
     width: 100%; 
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    height: 70px; 
+    background-color: rgb(240, 191, 76);
+} 
+
+.ItemHeader{
+    font-family: Arial, Helvetica, sans-serif; 
+    text-decoration: none; 
+    font-size: 30px; 
+    margin: 0;
+    padding: 0; 
+    color: white;
+} 
+
+.Info{
+    text-align: center; 
+    margin-top: 60px; 
+    padding: 0;  
+    font-size: 18px;
+    color: black;
+    opacity: 0.6;
+}
+ 
+.HomeLoginForm{
+    width: 100%;  
+    margin-top: 50px;
     display: flex;
     flex-direction: column; 
     justify-content: center; 
@@ -8,4 +53,42 @@
 
 .HomeLoginFormItem{
     margin: 10px 0px;
+}  
+
+.SubmitButton{ 
+    margin-top: 30px;
+    padding: 10px 20px; 
+    background-color: white; 
+    border: 3px solid rgb(240, 191, 76); 
+    background-color: rgb(240, 191, 76); 
+    color: white;
+    font-style: bold; 
+    font-size: 16px;
+}  
+
+.OrText{
+    font-size: 20px; 
+    margin: 7.5px 0px;
 }
+
+.SubmitButton:hover{
+    background-color: white; 
+    color: rgb(240, 191, 76);
+} 
+
+footer{
+    width: 100%;  
+    margin-top: 102px; 
+    height: 50px; 
+    background-color: rgb(240, 191, 76);  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+footer a{
+    font-family: Arial, Helvetica, sans-serif;  
+    color: black; 
+    text-decoration: none;
+}
+

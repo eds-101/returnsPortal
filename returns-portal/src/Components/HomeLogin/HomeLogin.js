@@ -10,9 +10,11 @@ function HomeLogin(){
     }
 
     return(
-        <div>  
-            <h2>Tu Pack Returns Portal</h2> 
-
+        <div>   
+            <div className="Header">
+                <p className="ItemHeader">Tu Pack Returns Portal</p> 
+            </div> 
+            <p className="Info">Bought an item you want to send back? Type in your <b>Order Number</b>, <b>Email</b> or <b>Postcode</b> below.</p>
             <form className="HomeLoginForm" onSubmit={handleSubmit}>  
                 <div className="HomeLoginFormItem">
                     <label>Order Number</label>
@@ -21,15 +23,17 @@ function HomeLogin(){
                 <div className="HomeLoginFormItem">
                     <label>Email</label>
                     <input type="text"/>
-                </div>
+                </div> 
+                <p className="OrText">Or</p>
                 <div className="HomeLoginFormItem">
                     <label>Postcode</label>
                     <input type="text"/> 
                 </div>
-                <button type="submit">Submit</button> 
-
+                <button className="SubmitButton" type="submit">Submit</button> 
             </form> 
-
+            <footer>
+                <a href="https://support.tupack.co.uk/hc/en-gb">Help and Support</a>
+            </footer>
         </div>
     )
 } 
