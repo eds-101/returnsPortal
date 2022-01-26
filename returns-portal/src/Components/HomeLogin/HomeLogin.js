@@ -2,11 +2,18 @@ import './HomeLogin.css'
 
 function HomeLogin(){ 
 
+    function handleSubmit(e){
+        e.preventDefault()
+        console.log(e.target[0].value)
+        console.log(e.target[1].value)
+        console.log(e.target[2].value)
+    }
+
     return(
         <div>  
             <h2>Tu Pack Returns Portal</h2> 
 
-            <form className="HomeLoginForm">  
+            <form className="HomeLoginForm" onSubmit={handleSubmit}>  
                 <div className="HomeLoginFormItem">
                     <label>Order Number</label>
                     <input type="text"/> 
