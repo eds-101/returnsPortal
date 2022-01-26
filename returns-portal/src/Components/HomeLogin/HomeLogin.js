@@ -4,19 +4,25 @@ function HomeLogin(){
 
     return(
         <div>  
-            <h2>Tu Pack Returns Portal</h2>
-            <form> 
-                <label>Order Number</label>
-                <input type="text"/> 
+            <h2>Tu Pack Returns Portal</h2> 
 
-                <label>Email</label>
-                <input type="text"/>
+            <form className="HomeLoginForm">  
+                <div className="HomeLoginFormItem">
+                    <label>Order Number</label>
+                    <input type="text"/> 
+                </div> 
+                <div className="HomeLoginFormItem">
+                    <label>Email</label>
+                    <input type="text"/>
+                </div>
+                <div className="HomeLoginFormItem">
+                    <label>Postcode</label>
+                    <input type="text"/> 
+                </div>
+                <button type="submit">Submit</button> 
 
-                <label>Postcode</label>
-                <input type="text"/> 
+            </form> 
 
-                <button type="submit">Submit</button>
-            </form>
         </div>
     )
 } 
