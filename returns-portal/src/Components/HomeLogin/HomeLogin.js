@@ -4,34 +4,34 @@ import { useState } from 'react'
 // PCP17043
 function HomeLogin(){ 
     const [emailAddress, setEmailAddress] = useState('')
-    const [postcode, setPostcode] = useState('')
+    const [postcode, setPostcode] = useState('')  
+    const [orderNumber, setOrderNumber] = useState('')
 
     async function handleSubmit(e){
         // Needs CORS approval when running on localhost
-        e.preventDefault()
-        const orderNumber = (e.target[0].value)
-        const emailAddress = (e.target[1].value)
-        setEmailAddress(emailAddress)
-        const postcode = (e.target[2].value) 
-        setPostcode(postcode)
+        e.preventDefault()  
+        
+        setOrderNumber(e.target[0].value)
+        setEmailAddress(e.target[1].value)
+        setPostcode(e.target[2].value)
        
         try { 
             const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
             const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${API_KEY}&OrderNumber=PCP17043`) 
             const orderDetails = await getOrderDetails.json()
             const userEmail = orderDetails[0].Email
-            const userPostCode = orderDetails[0].PostCode
+            const userPostCode = orderDetails[0].PostCode 
 
-            const auth = emailAddress === '' ? authenticateUser(postcode, userPostCode) :
-            authenticateUser(emailAddress, userEmail)
+            const auth = emailAddress === '' ? authenticateUser(postcode, userPostCode) : authenticateUser(emailAddress, userEmail)
             console.log(auth)
             console.log(userEmail, userPostCode)
 
         } catch(error) {
             console.error(error)
         }
-    }
+    } 
 
+    // Does email or postcode match the order number details.
     function authenticateUser(userCredential, systemEntry){
         return userCredential === systemEntry ? true : false
     }
