@@ -37,11 +37,11 @@ function HomeLogin(){
     }
 
     return(
-        <div>   
+        <div className='HomeLogin'>   
             <div className="Header">
                 <p className="ItemHeader">Tu Pack Returns Portal</p> 
             </div> 
-            <p className="Info">Bought an item you want to send back? Type in your <b>Order Number</b>, <b>Email</b> or <b>Postcode</b> below.</p>
+            <p className="Info">Bought an item you want to send back? Type in your <b>Order Number</b> then <b>Email</b> or <b>Postcode</b> below.</p>
             <form className="HomeLoginForm" onSubmit={handleSubmit}>  
                 <div className="HomeLoginFormItem">
                     <label>Order Number</label>
@@ -51,15 +51,15 @@ function HomeLogin(){
                     <label>Email</label>
                     <input type="text"/>
                 </div> 
-                <p className="OrText">Or</p>
+                <p className="OrText">or</p>
                 <div className="HomeLoginFormItem">
                     <label>Postcode</label>
                     <input type="text"/> 
                 </div>
                 <button className="SubmitButton" type="submit">Submit</button> 
-            </form> 
+            </form>   
             <footer>
-                <a href="https://support.tupack.co.uk/hc/en-gb">Help and Support</a>
+                <a href='https://support.tupack.co.uk/hc/en-gb'>Help and Support</a>
             </footer>
         </div>
     )

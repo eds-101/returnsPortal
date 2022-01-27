@@ -1,14 +1,12 @@
 import './App.css' 
-import HomeLogin from './Components/HomeLogin/HomeLogin';
+import HomeLogin from './Components/HomeLogin/HomeLogin'; 
+
 
 function App() { 
 
-  
-
-
   return ( 
     <div className="App">
-      <HomeLogin/>
+      <HomeLogin/> 
     </div>
   );
 }
