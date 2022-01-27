@@ -1,31 +1,30 @@
 import './HomeLogin.css'
-
+// PCP17043
 function HomeLogin(){ 
 
     async function handleSubmit(e){
         // Needs CORS approval when running on localhost
-
         e.preventDefault()
         const orderNumber = (e.target[0].value)
         const emailAddress = (e.target[1].value)
-        const postcode = (e.target[2].value)
-
-        //api call
-        try {
-            const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${process.env.API_KEY}&OrderNumber=PCP17043`)
+        const postcode = (e.target[2].value) 
+       
+        try { 
+            const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
+            const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${API_KEY}&OrderNumber=PCP17043`) 
             const orderDetails = await getOrderDetails.json()
             const userEmail = orderDetails[0].Email
-            const userPostCode = orderDetails[0].PostCode
+            const userPostCode = orderDetails[0].PostCode 
+
+            console.log(userEmail, userPostCode) 
 
         } catch(error) {
-            console.error(e)
+            console.error(error)
         }
-
     }
 
     function authenticateUserDetails(){
-        // check api calls email/postcode === user submission
-
+        
     }
 
     return(
