@@ -1,11 +1,13 @@
 import './HomeLogin.css'
 import { useState } from 'react'
 
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
+
 // PCP17043
 function HomeLogin(){ 
     const [emailAddress, setEmailAddress] = useState('')
     const [postcode, setPostcode] = useState('')  
-    const [orderNumber, setOrderNumber] = useState('')
+    const [orderNumber, setOrderNumber] = useState('PCP17043')
     const [incorrectAlert, setIncorrectAlert] = useState('')
 
     async function handleSubmit(e){
@@ -17,8 +19,7 @@ function HomeLogin(){
         setPostcode(e.target[2].value)
        
         try { 
-            const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
-            const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${API_KEY}&OrderNumber=PCP17043`) 
+            const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${API_KEY}&OrderNumber=${orderNumber}`) 
             const orderDetails = await getOrderDetails.json()
             const userEmail = orderDetails[0].Email
             const userPostCode = orderDetails[0].PostCode 
@@ -38,7 +39,18 @@ function HomeLogin(){
         setIncorrectAlert("Try again")
     }
 
-    function grabUserData(){
+    async function grabUserData(){
+        //product ids - Order/id/items
+        //quant of item - Order/id/items
+        //item name - product/id
+        //item picture - product/id
+        try { 
+            const getOrderItems = await fetch(`https://api.mintsoft.co.uk/api/Order/${orderNumber}/items/Search?APIKey=${API_KEY}&OrderNumber=PCP17043`) 
+            console.log(getOrderItems)
+        } catch(error) {
+            console.error(error)
+        }
+
 
     }
 
