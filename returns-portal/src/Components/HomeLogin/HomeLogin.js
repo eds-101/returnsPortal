@@ -6,6 +6,7 @@ function HomeLogin(){
     const [emailAddress, setEmailAddress] = useState('')
     const [postcode, setPostcode] = useState('')  
     const [orderNumber, setOrderNumber] = useState('')
+    const [incorrectAlert, setIncorrectAlert] = useState('')
 
     async function handleSubmit(e){
         // Needs CORS approval when running on localhost
@@ -26,10 +27,20 @@ function HomeLogin(){
             console.log(auth)
             console.log(userEmail, userPostCode)
 
+            auth ? grabUserData() : incorrectDetailsAlert()
+
         } catch(error) {
             console.error(error)
         }
     } 
+
+    function incorrectDetailsAlert(){
+        setIncorrectAlert("Try again")
+    }
+
+    function grabUserData(){
+
+    }
 
     // Does email or postcode match the order number details.
     function authenticateUser(userCredential, systemEntry){
@@ -57,6 +68,9 @@ function HomeLogin(){
                     <input type="text"/> 
                 </div>
                 <button className="SubmitButton" type="submit">Submit</button> 
+                <div className='IncorrectDetails'>
+                    <p>{incorrectAlert}</p>
+                </div>
             </form>   
             <footer>
                 <a href='https://support.tupack.co.uk/hc/en-gb'>Help and Support</a>
