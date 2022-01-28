@@ -1,25 +1,26 @@
 import './HomeLogin.css'
 import { useState } from 'react'
 
-// PCP17043
+// PCP17043 
+// const orderNumber = 'PCP17043'
+// anitane@gmail.com
+
 function HomeLogin(){ 
-    const [emailAddress, setEmailAddress] = useState('')
-    const [postcode, setPostcode] = useState('')  
-    const [orderNumber, setOrderNumber] = useState('')
-    const [incorrectAlert, setIncorrectAlert] = useState('')
+    const [incorrectAlert, setIncorrectAlert] = useState('')  
 
     async function handleSubmit(e){
         // Needs CORS approval when running on localhost
         e.preventDefault()  
         
-        setOrderNumber(e.target[0].value)
-        setEmailAddress(e.target[1].value)
-        setPostcode(e.target[2].value)
+        const orderNumber = e.target[0].value
+        const postcode = e.target[2].value 
+        const emailAddress = e.target[1].value
        
         try { 
             const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
-            const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${API_KEY}&OrderNumber=PCP17043`) 
-            const orderDetails = await getOrderDetails.json()
+            const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${API_KEY}&OrderNumber=${orderNumber}`)  
+            console.log(getOrderDetails)
+            const orderDetails = await getOrderDetails.json() 
             const userEmail = orderDetails[0].Email
             const userPostCode = orderDetails[0].PostCode 
 
@@ -30,7 +31,7 @@ function HomeLogin(){
             auth ? grabUserData() : incorrectDetailsAlert()
 
         } catch(error) {
-            console.error(error)
+            console.log(error)
         }
     } 
 
@@ -39,7 +40,7 @@ function HomeLogin(){
     }
 
     function grabUserData(){
-
+        console.log('hello world')
     }
 
     // Does email or postcode match the order number details.
