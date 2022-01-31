@@ -47,21 +47,60 @@ function HomeLogin(){
             //item picture - product/id
             try { 
                 const getOrderItems = await fetch(`https://api.mintsoft.co.uk/api/Order/${orderNumber}/Items?APIKey=${API_KEY}`) 
-                const orderItems = await getOrderItems.json()
+                const orderItems = await getOrderItems.json() 
+
+                let productsArray = []
                 let products = {}
 
                 for(let i = 0; i < orderItems.length; i++) {
                     let productId = orderItems[i].ProductId
-                    let quantity = orderItems[i].Quantity
-                    products[productId] = quantity
+                    let quantity = orderItems[i].Quantity 
+                    products['ItemID'] = productId 
+                    products['ItemQuantity'] = quantity
+                    productsArray.push(products) 
+                    products = {}
                 }
-
-                console.log(products)
+  
+                GetItemInfo(productsArray)
+                // id and number of items
             } catch(error) {
                 console.error(error)
             }
 
+    }  
+
+    async function GetItemInfo(productsArray){ 
+
+        let ItemInfoArray = []  
+        let ItemObject = {}
+
+        try{
+            productsArray.map(async (item) => {
+                let GetItemInfo = await fetch(`https://api.mintsoft.co.uk/api/Product/${item['ItemID']}?APIKey=${API_KEY}`) 
+                let ItemInfo = await GetItemInfo.json()   
+                ItemObject['Name'] = ItemInfo.Name  
+                ItemObject['Quantity'] = item['ItemQuantity']
+                ItemObject['Price'] = ItemInfo.Price 
+                ItemObject['ImageURL'] = ItemInfo.ImageURL  
+                ItemInfoArray.push(ItemObject) 
+                ItemObject = {}
+            }) 
+            console.log(ItemInfoArray)
+
+        } 
+        catch(error){
+            console.log(`Error: ${error}`)
+        }
     }
+
+
+    // 
+    // Product Name  
+    // Price    
+    // product image   
+    // number of products from the object 
+
+
 
     // Does email or postcode match the order number details.
     function authenticateUser(userCredential, systemEntry){
