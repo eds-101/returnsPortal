@@ -6,17 +6,21 @@ import { useState } from 'react'
 
 //then feed in data dynamically from home login 
 
-//Price has not been put through. 
+//Price has not been put through.  
 
-function ReturnSelector(props) {   
+// return <ItemRow key={index} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} />  
+
+
+
+function ReturnSelector(props) {     
 
     console.log(props.SendItemData)
 
     return( 
         <div> 
-            {props.SendItemData.map((item) => {  
-                // return <ItemRow key={index} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} /> 
-                return <p>{item['Name']}</p>
+            {props.SendItemData.map((item, index) => {  
+                return <p>{item['Name']}</p> 
+                // <ItemRow key={index} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} />
             })}
         </div>
     )

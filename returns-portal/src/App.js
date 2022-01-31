@@ -7,19 +7,20 @@ function App() {
 
   const [ItemData, setItemData] = useState([])
 
-  function GetItemInfo(data){
-    setItemData(ItemData => [...ItemData, data])
+  function GetItemInfo(data){ 
+    // setItemData(ItemData => [...ItemData, data]) 
+    setItemData(data)
   }   
 
-  // useEffect(() => {
-  //   setItemData(ItemData)
-  // }, [ItemData])
+  useEffect(() => {
+    setItemData(ItemData)
+  }, [ItemData])
 
   // set statue with array with can be populated with data
 
   return ( 
     <div className="App">
-      {/* <HomeLogin GetItemArrayData={GetItemInfo}/>  */}
+      <HomeLogin GetItemArrayData={GetItemInfo}/> 
       <ReturnSelector SendItemData={ItemData}/>
     </div>
   );
