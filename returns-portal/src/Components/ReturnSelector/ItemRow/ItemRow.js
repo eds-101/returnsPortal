@@ -11,7 +11,7 @@ const returnsReasons = [
 function ItemRow(props) {
     return(
         <div>
-        <div className='itemPicture'>
+        {/* <div className='itemPicture'>
             <img src={props.imgURL} alt="" />
         </div>
         <div className='itemName'>
@@ -19,7 +19,7 @@ function ItemRow(props) {
         </div>
         <div className='returnReasonsMenu'>
             <label>Why are you returning this?</label>
-            <select required onChange="">
+            <select>
                 {returnsReasons.map(r => <option key={r}>{r}</option>)}
                 <option value=" "> </option>
             </select>
@@ -27,7 +27,8 @@ function ItemRow(props) {
         <div className='returnQuantityMenu'>
         <label>How many do you want to return?</label>
             <input type="number" required /> 
-        </div>
+        </div> */} 
+        <p>{props.name}</p>
         </div>
     )
 }

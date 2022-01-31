@@ -4,14 +4,20 @@ import { useState } from 'react'
 
 //display all elements of an item from an order
 
-//then feed in data dynamically from home login
+//then feed in data dynamically from home login 
 
+//Price has not been put through. 
 
-function ReturnSelector() {
-    return(
-        <div>
-            <ItemRow name="Duck Fat" imgURL="https://bit.ly/3IQZGNX"
-                quantity={3} />
+function ReturnSelector(props) {   
+
+    console.log(props.SendItemData)
+
+    return( 
+        <div> 
+            {props.SendItemData.map((item) => {  
+                // return <ItemRow key={index} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} /> 
+                return <p>{item['Name']}</p>
+            })}
         </div>
     )
 }
