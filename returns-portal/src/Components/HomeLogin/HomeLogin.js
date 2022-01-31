@@ -7,11 +7,13 @@ import { useState } from 'react'
 
 function HomeLogin(){ 
     const [incorrectAlert, setIncorrectAlert] = useState('')  
+    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
 
     async function handleSubmit(e){
         // Needs CORS approval when running on localhost
         e.preventDefault()  
         
+
         const orderNumber = e.target[0].value
         const postcode = e.target[2].value 
         const emailAddress = e.target[1].value
@@ -27,7 +29,7 @@ function HomeLogin(){
             console.log(auth)
             console.log(userEmail, userPostCode)
 
-            auth ? grabUserData() : incorrectDetailsAlert()
+            auth ? fetchOrderDetails(orderNumber) : incorrectDetailsAlert()
 
         } catch(error) {
             console.log(error)
@@ -38,8 +40,26 @@ function HomeLogin(){
         setIncorrectAlert("Try again")
     }
 
-    function grabUserData(){
-        console.log('hello world')
+    async function fetchOrderDetails(orderNumber){
+            //product ids - Order/id/items
+            //quant of item - Order/id/items
+            //item name - product/id
+            //item picture - product/id
+            try { 
+                const getOrderItems = await fetch(`https://api.mintsoft.co.uk/api/Order/${orderNumber}/Items?APIKey=${API_KEY}`) 
+                const orderItems = await getOrderItems.json()
+                let products = {}
+
+                for(let i = 0; i < orderItems.length; i++) {
+                    let productId = orderItems[i].ProductId
+                    let quantity = orderItems[i].Quantity
+                    products[productId] = quantity
+                }
+
+                console.log(products)
+            } catch(error) {
+                console.error(error)
+            }
 
     }
 
