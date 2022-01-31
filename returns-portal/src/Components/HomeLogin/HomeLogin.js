@@ -60,14 +60,37 @@ function HomeLogin(){
                     productsArray.push(products) 
                     products = {}
                 }
-
-                console.log(productsArray) 
+  
+                GetItemInfo(productsArray)
                 // id and number of items
             } catch(error) {
                 console.error(error)
             }
 
+    }  
+
+    async function GetItemInfo(productsArray){
+        try{
+            productsArray.map(async (item) => {
+                let GetItemInfo = await fetch(`https://api.mintsoft.co.uk/api/Product/${item['ItemID']}?APIKey=${API_KEY}`) 
+                let ItemInfo = await GetItemInfo.json() 
+                console.log(ItemInfo)
+            })
+
+        } 
+        catch(error){
+            console.log(`Error: ${error}`)
+        }
     }
+
+
+    // 
+    // Product Name  
+    // Price    
+    // product image   
+    // number of products from the object 
+
+
 
     // Does email or postcode match the order number details.
     function authenticateUser(userCredential, systemEntry){
