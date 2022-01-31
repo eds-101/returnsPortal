@@ -5,7 +5,7 @@ import { useState } from 'react'
 // const orderNumber = 'PCP17043'
 // anitane@gmail.com
 
-function HomeLogin(){ 
+function HomeLogin(props){ 
     const [incorrectAlert, setIncorrectAlert] = useState('')  
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
 
@@ -85,16 +85,16 @@ function HomeLogin(){
                 ItemInfoArray.push(ItemObject) 
                 ItemObject = {}
             }) 
-            console.log(ItemInfoArray)
-
         } 
         catch(error){
             console.log(`Error: ${error}`)
-        }
+        } 
+
+        props.GetItemArrayData(ItemInfoArray)
     }
 
 
-    // 
+    // ItemInfoArray data set
     // Product Name  
     // Price    
     // product image   
