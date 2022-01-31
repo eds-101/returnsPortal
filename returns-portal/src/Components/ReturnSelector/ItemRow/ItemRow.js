@@ -1,4 +1,3 @@
-import './ReturnSelector.css'
 import { useState } from 'react'
 
 //display all elements of an item from an order
@@ -6,7 +5,7 @@ import { useState } from 'react'
 //then feed in data dynamically from home login
 
 
-function ReturnSelector() {
+function ItemRow() {
     return(
         <div>
         
@@ -14,4 +13,4 @@ function ReturnSelector() {
     )
 }
 
-export default ReturnSelector
+export default ItemRow
