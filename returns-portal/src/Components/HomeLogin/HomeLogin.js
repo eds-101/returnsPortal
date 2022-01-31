@@ -69,13 +69,23 @@ function HomeLogin(){
 
     }  
 
-    async function GetItemInfo(productsArray){
+    async function GetItemInfo(productsArray){ 
+
+        let ItemInfoArray = []  
+        let ItemObject = {}
+
         try{
             productsArray.map(async (item) => {
                 let GetItemInfo = await fetch(`https://api.mintsoft.co.uk/api/Product/${item['ItemID']}?APIKey=${API_KEY}`) 
-                let ItemInfo = await GetItemInfo.json() 
-                console.log(ItemInfo)
-            })
+                let ItemInfo = await GetItemInfo.json()   
+                ItemObject['Name'] = ItemInfo.Name  
+                ItemObject['Quantity'] = item['ItemQuantity']
+                ItemObject['Price'] = ItemInfo.Price 
+                ItemObject['ImageURL'] = ItemInfo.ImageURL  
+                ItemInfoArray.push(ItemObject) 
+                ItemObject = {}
+            }) 
+            console.log(ItemInfoArray)
 
         } 
         catch(error){
