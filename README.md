@@ -1,5 +1,9 @@
 # returnsPortal
 
+# Notes
+* add notes for API Key in .env
+* cors when running on localhost
+
 ## User Stories
 ```
 As a customer, 
