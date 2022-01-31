@@ -47,16 +47,22 @@ function HomeLogin(){
             //item picture - product/id
             try { 
                 const getOrderItems = await fetch(`https://api.mintsoft.co.uk/api/Order/${orderNumber}/Items?APIKey=${API_KEY}`) 
-                const orderItems = await getOrderItems.json()
+                const orderItems = await getOrderItems.json() 
+
+                let productsArray = []
                 let products = {}
 
                 for(let i = 0; i < orderItems.length; i++) {
                     let productId = orderItems[i].ProductId
-                    let quantity = orderItems[i].Quantity
-                    products[productId] = quantity
+                    let quantity = orderItems[i].Quantity 
+                    products['ItemID'] = productId 
+                    products['ItemQuantity'] = quantity
+                    productsArray.push(products) 
+                    products = {}
                 }
 
-                console.log(products)
+                console.log(productsArray) 
+                // id and number of items
             } catch(error) {
                 console.error(error)
             }
