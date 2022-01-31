@@ -10,7 +10,8 @@ import { useState } from 'react'
 function ReturnSelector() {
     return(
         <div>
-            <ItemRow imgURL="https://bit.ly/3IQZGNX"/>
+            <ItemRow name="Duck Fat" imgURL="https://bit.ly/3IQZGNX"
+                quantity={3} />
         </div>
     )
 }

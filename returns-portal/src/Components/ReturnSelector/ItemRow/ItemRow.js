@@ -13,10 +13,9 @@ function ItemRow(props) {
         <div>
         <div className='itemPicture'>
             <img src={props.imgURL} alt="" />
-            {/* <img src="https://bit.ly/3IQZGNX" alt=""/>     */}
         </div>
         <div className='itemName'>
-            <h2>Duck Fat</h2>
+            <h2>{props.name}</h2>
         </div>
         <div className='returnReasonsMenu'>
             <label>Why are you returning this?</label>
