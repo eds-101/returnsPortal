@@ -19,7 +19,7 @@ REACT_APP_WEATHER_API_KEY=
 ```
 
 ### Running API calls on localhost
-* CORS policy is likely to prevent program running locally. We use a browser extension [Moesif Origin & CORS Changer] (https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc) to solve this
+* CORS policy is likely to prevent program running locally. We use a browser extension [Moesif Origin & CORS Changer](https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc) to solve this
 * Add extension and turn switch to on before running server
 * npm start, from root folder, to run server
 
