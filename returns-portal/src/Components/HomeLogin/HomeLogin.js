@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 // anitane@gmail.com 
 
 function HomeLogin(props){ 
-    const [incorrectAlert, setIncorrectAlert] = useState('')   
+    const [incorrectAlert, setIncorrectAlert] = useState('')    
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY 
 
@@ -90,9 +90,11 @@ function HomeLogin(props){
             console.log(`Error: ${error}`)
         } 
 
-        props.GetItemArrayData(ItemInfoArray) 
-    } 
- 
+          
+        setTimeout(() => props.GetItemArrayData(ItemInfoArray), 1000)
+        
+    }  
+    
 
 
     // ItemInfoArray data set

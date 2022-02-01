@@ -14,13 +14,13 @@ import { useState, useEffect } from 'react'
 
 function ReturnSelector(props) {     
 
-    console.log(props.SendItemData)  
-    
+    console.log(props.SendItemData)   
 
     return( 
         <div> 
-            {props.SendItemData.map((item) => {  
-                return <p>{item['Name']}</p>
+            {props.SendItemData.map((item, index) => {  
+                // return <p>{item['Name']}</p>
+                return <ItemRow key={index} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} price={item['Price']} /> 
             })}
         </div>
     )

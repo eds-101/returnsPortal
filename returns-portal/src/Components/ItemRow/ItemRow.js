@@ -12,7 +12,9 @@ function ItemRow(props) {
 
     return(
         <div>
-            <p>{props.name}</p> 
+            <p>{props.name}</p>  
+            <p>Quantity {props.quantity}</p> 
+            <p>£{props.price}</p>
         </div>
     )
 }
