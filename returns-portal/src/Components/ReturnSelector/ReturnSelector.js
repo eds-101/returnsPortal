@@ -1,6 +1,6 @@
 import './ReturnSelector.css'
-import ItemRow from './ItemRow/ItemRow'
-import { useState } from 'react'
+import ItemRow from '../ItemRow/ItemRow'
+import { useState, useEffect } from 'react'
 
 //display all elements of an item from an order
 
@@ -14,13 +14,13 @@ import { useState } from 'react'
 
 function ReturnSelector(props) {     
 
-    console.log(props.SendItemData)
+    console.log(props.SendItemData)  
+    
 
     return( 
         <div> 
-            {props.SendItemData.map((item, index) => {  
-                return <p>{item['Name']}</p> 
-                // <ItemRow key={index} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} />
+            {props.SendItemData.map((item) => {  
+                return <p>{item['Name']}</p>
             })}
         </div>
     )

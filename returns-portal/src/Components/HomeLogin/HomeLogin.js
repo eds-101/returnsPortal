@@ -1,19 +1,19 @@
 import './HomeLogin.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // PCP17043 
 // const orderNumber = 'PCP17043'
-// anitane@gmail.com
+// anitane@gmail.com 
 
 function HomeLogin(props){ 
-    const [incorrectAlert, setIncorrectAlert] = useState('')  
-    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
+    const [incorrectAlert, setIncorrectAlert] = useState('')   
+
+    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY 
 
     async function handleSubmit(e){
         // Needs CORS approval when running on localhost
         e.preventDefault()  
         
-
         const orderNumber = e.target[0].value
         const postcode = e.target[2].value 
         const emailAddress = e.target[1].value
@@ -70,9 +70,9 @@ function HomeLogin(props){
     }  
 
     async function GetItemInfo(productsArray){ 
-
-        let ItemInfoArray = []  
+ 
         let ItemObject = {}
+        let ItemInfoArray = []
 
         try{
             productsArray.map(async (item) => {
@@ -90,8 +90,9 @@ function HomeLogin(props){
             console.log(`Error: ${error}`)
         } 
 
-        props.GetItemArrayData(ItemInfoArray)
-    }
+        props.GetItemArrayData(ItemInfoArray) 
+    } 
+ 
 
 
     // ItemInfoArray data set
