@@ -15,8 +15,8 @@ function App() {
 
   return ( 
     <div className="App">
-      {/* <HomeLogin GetItemArrayData={GetItemInfo}/>  */}
-      {/* <ReturnSelector /> */}
+      <HomeLogin GetItemArrayData={GetItemInfo}/> 
+      <ReturnSelector />
     </div>
   );
 }

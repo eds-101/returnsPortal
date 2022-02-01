@@ -6,105 +6,77 @@ import { useState } from 'react'
 // anitane@gmail.com
 
 function HomeLogin(props){ 
-    const [incorrectAlert, setIncorrectAlert] = useState('')  
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
 
     async function handleSubmit(e){
         // Needs CORS approval when running on localhost
         e.preventDefault()  
         
-
         const orderNumber = e.target[0].value
         const postcode = e.target[2].value 
         const emailAddress = e.target[1].value
        
         try { 
-
             const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${API_KEY}&OrderNumber=${orderNumber}`) 
             const orderDetails = await getOrderDetails.json()
             const userEmail = orderDetails[0].Email
             const userPostCode = orderDetails[0].PostCode 
 
             const auth = emailAddress === '' ? authenticateUser(postcode, userPostCode) : authenticateUser(emailAddress, userEmail)
-            console.log(auth)
-            console.log(userEmail, userPostCode)
+            console.log(orderNumber, auth, userEmail, userPostCode)
 
-            auth ? fetchOrderDetails(orderNumber) : incorrectDetailsAlert()
+            auth ? fetchOrder(orderNumber) : alert("Try again")
 
         } catch(error) {
             console.log(error)
         }
     } 
 
-    function incorrectDetailsAlert(){
-        setIncorrectAlert("Try again")
+    function authenticateUser(userCredential, systemEntry){
+        return userCredential === systemEntry ? true : false
     }
 
-    async function fetchOrderDetails(orderNumber){
-            //product ids - Order/id/items
-            //quant of item - Order/id/items
-            //item name - product/id
-            //item picture - product/id
-            try { 
-                const getOrderItems = await fetch(`https://api.mintsoft.co.uk/api/Order/${orderNumber}/Items?APIKey=${API_KEY}`) 
-                const orderItems = await getOrderItems.json() 
+    async function fetchOrder(orderNumber){
+        try { 
+            const getProductsFromOrder = await fetch(`https://api.mintsoft.co.uk/api/Order/${orderNumber}/Items?APIKey=${API_KEY}`) 
+            const productsRawFormat = await getProductsFromOrder.json() 
 
-                let productsArray = []
-                let products = {}
-
-                for(let i = 0; i < orderItems.length; i++) {
-                    let productId = orderItems[i].ProductId
-                    let quantity = orderItems[i].Quantity 
-                    products['ItemID'] = productId 
-                    products['ItemQuantity'] = quantity
-                    productsArray.push(products) 
-                    products = {}
-                }
-  
-                GetItemInfo(productsArray)
-                // id and number of items
-            } catch(error) {
-                console.error(error)
+            let productsInOrder = [], product = {}
+            for(let i = 0; i < productsRawFormat.length; i++) {
+                let id = productsRawFormat[i].ProductId, quantity = productsRawFormat[i].Quantity 
+                product['ID'] = id 
+                product['Quantity'] = quantity
+                productsInOrder.push(product) 
+                product = {}
             }
 
+            populateProductDetails(productsInOrder)
+            // id and number of items
+        } catch(error) {
+            console.error(error)
+        }
     }  
 
-    async function GetItemInfo(productsArray){ 
-
-        let ItemInfoArray = []  
-        let ItemObject = {}
+    async function populateProductDetails(products){ 
+        let listOfProducts = [], product = {} 
 
         try{
-            productsArray.map(async (item) => {
-                let GetItemInfo = await fetch(`https://api.mintsoft.co.uk/api/Product/${item['ItemID']}?APIKey=${API_KEY}`) 
-                let ItemInfo = await GetItemInfo.json()   
-                ItemObject['Name'] = ItemInfo.Name  
-                ItemObject['Quantity'] = item['ItemQuantity']
-                ItemObject['Price'] = ItemInfo.Price 
-                ItemObject['ImageURL'] = ItemInfo.ImageURL  
-                ItemInfoArray.push(ItemObject) 
-                ItemObject = {}
+            products.map(async (p) => {
+                let productApiCall = await fetch(`https://api.mintsoft.co.uk/api/Product/${p['ID']}?APIKey=${API_KEY}`) 
+                let rawProductData = await productApiCall.json()   
+                product['Name'] = rawProductData.Name  
+                product['Quantity'] = p['ItemQuantity']
+                product['Price'] = rawProductData.Price 
+                product['ImageURL'] = rawProductData.ImageURL  
+                listOfProducts.push(product) 
+                product = {}
             }) 
         } 
         catch(error){
             console.log(`Error: ${error}`)
         } 
 
-        props.GetItemArrayData(ItemInfoArray)
-    }
-
-
-    // ItemInfoArray data set
-    // Product Name  
-    // Price    
-    // product image   
-    // number of products from the object 
-
-
-
-    // Does email or postcode match the order number details.
-    function authenticateUser(userCredential, systemEntry){
-        return userCredential === systemEntry ? true : false
+        props.GetItemArrayData(listOfProducts)
     }
 
     return(
@@ -128,9 +100,6 @@ function HomeLogin(props){
                     <input type="text"/> 
                 </div>
                 <button className="SubmitButton" type="submit">Submit</button> 
-                <div className='IncorrectDetails'>
-                    <p>{incorrectAlert}</p>
-                </div>
             </form>   
             <footer>
                 <a href='https://support.tupack.co.uk/hc/en-gb'>Help and Support</a>
