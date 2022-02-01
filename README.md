@@ -1,8 +1,28 @@
 # returnsPortal
+A React app to process a customer returns form.
 
-# Notes
-* add notes for API Key in .env
-* cors when running on localhost
+# Getting Started
+```
+git clone git@github.com:eds-101/returnsPortal.git
+cd returns-portal
+npm install
+npm start
+```
+
+# Usage
+
+### Setup .env file
+* create a .env file in root folder (same level as .gitignore file)
+* In .env file copy the following line, after asking for access to the api key
+```
+REACT_APP_WEATHER_API_KEY=
+```
+
+### Running API calls on localhost
+* CORS policy is likely to prevent program running locally. We use a browser extension [Moesif Origin & CORS Changer] (https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc) to solve this
+* Add extension and turn switch to on before running server
+* npm start, from root folder, to run server
+
 
 ## User Stories
 ```
