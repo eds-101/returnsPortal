@@ -13,7 +13,8 @@ function ItemRow(props) {
     return(
         <div>
             <p>{props.name}</p>  
-            <p>Quantity {props.quantity}</p> 
+            <p>Quantity {props.quantity}</p>  
+            <img scr={props.imgURL} alt="one" width="100"/>
             <p>£{props.price}</p>
         </div>
     )
