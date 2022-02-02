@@ -12,17 +12,20 @@ function ReturnSelector(props) {
 
     useEffect(() => {
         setlistOfItemsFromOrder(props.SendItemData)
-    }, [props.SendItemData]) 
+    }, [props.SendItemData])  
+
+    function ItemToBeReturned(){
+        console.log('click')
+    }
 
     // Ones the customer choses the item to return it will go into the listOfReturnFromCustomer.
-    
-    console.log(listOfItemsFromOrder)
 
     return( 
         <div> 
             {listOfItemsFromOrder.map((item) => {  
                 return <ItemRow key={item['itemID']} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} price={item['Price']} /> 
-            })}
+            })} 
+            <button onClick={ItemToBeReturned}>return</button>
         </div>
     )
 }

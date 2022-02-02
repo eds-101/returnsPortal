@@ -7,17 +7,26 @@ import './ItemRow.css'
 
 const returnsReasons = [
     "doesn't fit", "don't like it", "expensive"
-]
+]  
 
-function ItemRow(props) {
+// Get itemID, return resion and Quantity
+
+function ItemRow(props) { 
+
     function populateReturnQuantityOptions(quantity) {
         const quantList = []
         for(let i=0; i <= quantity; i++) {
             quantList.push(i)
         }
         return quantList
+    } 
+
+    const quantity = props.quantity 
+
+    function returnNumberOfItems(){
+        console.log('hello world')
     }
-    const quantity = props.quantity
+    
 
     return(
         <div className='container'>
@@ -30,9 +39,13 @@ function ItemRow(props) {
                 <h2>{props.name}</h2>
                 <div className='returnReasonsMenu'>
                     <label>Why are you returning this?</label>
-                    <select required onChange="">
-                        {returnsReasons.map(r => <option key={r}>{r}</option>)}
-                    </select>
+                    <select onChange={returnNumberOfItems}>
+                        {returnsReasons.map(r => <option value={r}>{r}</option>)}
+                    </select> 
+                    {/* <select >
+                        <option key={1} value="1">1</option> 
+                        <option key={2} value="2">2</option>
+                    </select> */}
                 </div>
             </div>
             <div className='right'>
@@ -43,7 +56,6 @@ function ItemRow(props) {
                     </select>
                 </div>
             </div>
-
         </div>
     )
 }

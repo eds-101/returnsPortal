@@ -1,24 +1,24 @@
 import './App.css'  
 import { useState, useEffect } from 'react'
 import HomeLogin from './Components/HomeLogin/HomeLogin'; 
-import ReturnSelector from './Components/ReturnSelector/ReturnSelector'; 
+import ReturnSelector from './Components/ReturnSelector/ReturnSelector';  
 
-const arrayItem = [];
+import DummyData from './Components/Data/orderData'
+
 
 function App() {  
 
-  const [ItemData, setItemData] = useState([])
+  // uncomment this when API has need confirmed. 
+  // const [ItemData, setItemData] = useState([])
 
-  function GetItemInfo(data){      
-      setItemData(data)    
-  }      
- 
-  // ones data has come from the homeLogin page switch to the persons package data.
+  // function GetItemInfo(data){      
+  //     setItemData(data)    
+  // }      
 
   return ( 
     <div className="App">
-      <HomeLogin GetItemArrayData={GetItemInfo}/> 
-      <ReturnSelector SendItemData={ItemData}/>
+      {/* <HomeLogin GetItemArrayData={GetItemInfo}/>  */} 
+      <ReturnSelector SendItemData={DummyData}/>
     </div>
   );
 }
