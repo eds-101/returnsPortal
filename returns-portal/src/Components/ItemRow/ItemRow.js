@@ -8,7 +8,12 @@ const returnsReasons = [
     "doesn't fit", "don't like it", "expensive"
 ]
 
-function ItemRow(props) { 
+function ItemRow(props) {  
+
+    // For a person to cick on the item. 
+    // Wich will go into a return item state.  
+    
+    // 
 
     return(
         <div>
