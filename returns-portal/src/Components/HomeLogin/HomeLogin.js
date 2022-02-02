@@ -41,10 +41,6 @@ function HomeLogin(props){
     }
 
     async function fetchOrderDetails(orderNumber){
-            //product ids - Order/id/items
-            //quant of item - Order/id/items
-            //item name - product/id
-            //item picture - product/id
             try { 
                 const getOrderItems = await fetch(`https://api.mintsoft.co.uk/api/Order/${orderNumber}/Items?APIKey=${API_KEY}`) 
                 const orderItems = await getOrderItems.json() 
@@ -62,7 +58,6 @@ function HomeLogin(props){
                 }
   
                 GetItemInfo(productsArray)
-                // id and number of items
             } catch(error) {
                 console.error(error)
             }
@@ -88,24 +83,13 @@ function HomeLogin(props){
         } 
         catch(error){
             console.log(`Error: ${error}`)
-        } 
+        }  
 
-          
         setTimeout(() => props.GetItemArrayData(ItemInfoArray), 1000)
-        
+
     }  
     
 
-
-    // ItemInfoArray data set
-    // Product Name  
-    // Price    
-    // product image   
-    // number of products from the object 
-
-
-
-    // Does email or postcode match the order number details.
     function authenticateUser(userCredential, systemEntry){
         return userCredential === systemEntry ? true : false
     }

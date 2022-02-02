@@ -19,7 +19,6 @@ function ReturnSelector(props) {
     return( 
         <div> 
             {props.SendItemData.map((item, index) => {  
-                // return <p>{item['Name']}</p>
                 return <ItemRow key={index} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} price={item['Price']} /> 
             })}
         </div>
