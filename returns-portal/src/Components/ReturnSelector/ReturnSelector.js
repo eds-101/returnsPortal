@@ -2,30 +2,22 @@ import './ReturnSelector.css'
 import ItemRow from '../ItemRow/ItemRow'
 import { useState, useEffect } from 'react'
 
-//display all elements of an item from an order
-
-//then feed in data dynamically from home login 
-
-//Price has not been put through.  
-
-// return <ItemRow key={index} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} />  
-
-
 
 function ReturnSelector(props) {     
 
     // console.log(props.SendItemData)    
 
-    const [listOfItemsFromOrder, setlistOfItemsFromOrder] = useState([])  
+    const [listOfItemsFromOrder, setlistOfItemsFromOrder] = useState([])    
+
+    const [listOfReturnItemsFromCustomer, setlistOfReturnItemsFromCustomer] = useState([])
 
     useEffect(() => {
         setlistOfItemsFromOrder(listOfItemsFromOrder => [...listOfItemsFromOrder, ...props.SendItemData])
-    }, [props.SendItemData])
-    
-    //console.log(listOfItemsFromOrder)
-    // Customers List [{Name, "Product"}]  
+    }, [props.SendItemData]) 
 
-    // Customers Reutrns [{Name, "Product", Qutity: 1, descript: "Didt like it"}]
+    // Ones the customer choses the item to return it will go into the listOfReturnFromCustomer.
+    
+    console.log(listOfItemsFromOrder)
 
     return( 
         <div> 

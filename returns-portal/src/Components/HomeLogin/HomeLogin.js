@@ -73,6 +73,7 @@ function HomeLogin(props){
             productsArray.map(async (item) => {
                 let GetItemInfo = await fetch(`https://api.mintsoft.co.uk/api/Product/${item['ItemID']}?APIKey=${API_KEY}`) 
                 let ItemInfo = await GetItemInfo.json()   
+                ItemObject['ItemID'] = item['ItemID'] 
                 ItemObject['Name'] = ItemInfo.Name  
                 ItemObject['Quantity'] = item['ItemQuantity']
                 ItemObject['Price'] = ItemInfo.Price 
