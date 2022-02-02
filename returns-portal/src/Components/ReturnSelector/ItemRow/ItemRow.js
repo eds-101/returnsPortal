@@ -10,6 +10,15 @@ const returnsReasons = [
 ]
 
 function ItemRow(props) {
+    function populateReturnQuantityOptions(quantity) {
+        const quantList = []
+        for(let i=0; i <= quantity; i++) {
+            quantList.push(i)
+        }
+        return quantList
+    }
+    const quantity = props.quantity
+
     return(
         <div className='container'>
             <div className='left'>
@@ -28,8 +37,10 @@ function ItemRow(props) {
             </div>
             <div className='right'>
                 <div className='returnQuantityMenu'>
-                <label>How many do you want to return?</label>
-                    <input type="number" required /> 
+                    <label>How many do you want to return?</label>
+                    <select required>
+                        {populateReturnQuantityOptions(quantity).map(i => <option key={i}>{Number(i)}</option>)}
+                    </select>
                 </div>
             </div>
 
