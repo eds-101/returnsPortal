@@ -14,11 +14,22 @@ import { useState, useEffect } from 'react'
 
 function ReturnSelector(props) {     
 
-    console.log(props.SendItemData)   
+    // console.log(props.SendItemData)    
+
+    const [listOfItemsFromOrder, setlistOfItemsFromOrder] = useState([])  
+
+    useEffect(() => {
+        setlistOfItemsFromOrder(listOfItemsFromOrder => [...listOfItemsFromOrder, ...props.SendItemData])
+    }, [props.SendItemData])
+    
+    //console.log(listOfItemsFromOrder)
+    // Customers List [{Name, "Product"}]  
+
+    // Customers Reutrns [{Name, "Product", Qutity: 1, descript: "Didt like it"}]
 
     return( 
         <div> 
-            {props.SendItemData.map((item, index) => {  
+            {listOfItemsFromOrder.map((item, index) => {  
                 return <ItemRow key={index} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} price={item['Price']} /> 
             })}
         </div>

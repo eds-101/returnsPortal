@@ -10,11 +10,12 @@ function App() {
   const [ItemData, setItemData] = useState([])
 
   function GetItemInfo(data){      
-    
       setItemData(data)    
-      // setItemData(ItemData => ItemData.concat(Data))
+     
+
   }      
-  // set statue with array with can be populated with data 
+ 
+  // ones data has come from the homeLogin page switch to the persons package data.
 
   return ( 
     <div className="App">
