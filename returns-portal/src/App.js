@@ -11,8 +11,6 @@ function App() {
 
   function GetItemInfo(data){      
       setItemData(data)    
-     
-
   }      
  
   // ones data has come from the homeLogin page switch to the persons package data.

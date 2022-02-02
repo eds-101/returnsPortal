@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState } from 'react' 
+import './ItemRow.css'
 
 //display all elements of an item from an order
 // update screen to display new page, after homelogin
@@ -12,7 +13,7 @@ function ItemRow(props) {
     return(
         <div>
         <div className='itemPicture'>
-            <img src={props.imgURL} alt="" />
+            <img src={props.imgURL} alt=""/>
         </div>
         <div className='itemName'>
             <h2>{props.name}</h2>

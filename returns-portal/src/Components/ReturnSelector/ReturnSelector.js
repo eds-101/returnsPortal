@@ -21,8 +21,8 @@ function ReturnSelector(props) {
 
     return( 
         <div> 
-            {listOfItemsFromOrder.map((item, index) => {  
-                return <ItemRow key={index} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} price={item['Price']} /> 
+            {listOfItemsFromOrder.map((item) => {  
+                return <ItemRow key={item['itemID']} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} price={item['Price']} /> 
             })}
         </div>
     )
