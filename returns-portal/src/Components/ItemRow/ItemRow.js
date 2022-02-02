@@ -8,14 +8,26 @@ const returnsReasons = [
     "doesn't fit", "don't like it", "expensive"
 ]
 
-function ItemRow(props) { 
-
+function ItemRow(props) {
     return(
         <div>
-            <p>{props.name}</p>  
-            <p>Quantity {props.quantity}</p>  
-            <img scr={props.imgURL} alt="one" width="100"/>
-            <p>£{props.price}</p>
+        <div className='itemPicture'>
+            <img src={props.imgURL} alt="" />
+        </div>
+        <div className='itemName'>
+            <h2>{props.name}</h2>
+        </div>
+        <div className='returnReasonsMenu'>
+            <label>Why are you returning this?</label>
+            <select required onChange="">
+                {returnsReasons.map(r => <option key={r}>{r}</option>)}
+                <option value=" "> </option>
+            </select>
+        </div>
+        <div className='returnQuantityMenu'>
+        <label>How many do you want to return?</label>
+            <input type="number" required /> 
+        </div>
         </div>
     )
 }
