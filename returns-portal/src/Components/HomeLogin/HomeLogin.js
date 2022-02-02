@@ -1,19 +1,19 @@
 import './HomeLogin.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // PCP17043 
 // const orderNumber = 'PCP17043'
-// anitane@gmail.com
+// anitane@gmail.com 
 
 function HomeLogin(props){ 
-    const [incorrectAlert, setIncorrectAlert] = useState('')  
-    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
+    const [incorrectAlert, setIncorrectAlert] = useState('')    
+
+    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY 
 
     async function handleSubmit(e){
         // Needs CORS approval when running on localhost
         e.preventDefault()  
         
-
         const orderNumber = e.target[0].value
         const postcode = e.target[2].value 
         const emailAddress = e.target[1].value
@@ -41,10 +41,6 @@ function HomeLogin(props){
     }
 
     async function fetchOrderDetails(orderNumber){
-            //product ids - Order/id/items
-            //quant of item - Order/id/items
-            //item name - product/id
-            //item picture - product/id
             try { 
                 const getOrderItems = await fetch(`https://api.mintsoft.co.uk/api/Order/${orderNumber}/Items?APIKey=${API_KEY}`) 
                 const orderItems = await getOrderItems.json() 
@@ -62,7 +58,6 @@ function HomeLogin(props){
                 }
   
                 GetItemInfo(productsArray)
-                // id and number of items
             } catch(error) {
                 console.error(error)
             }
@@ -70,9 +65,9 @@ function HomeLogin(props){
     }  
 
     async function GetItemInfo(productsArray){ 
-
-        let ItemInfoArray = []  
+ 
         let ItemObject = {}
+        let ItemInfoArray = []
 
         try{
             productsArray.map(async (item) => {
@@ -88,21 +83,13 @@ function HomeLogin(props){
         } 
         catch(error){
             console.log(`Error: ${error}`)
-        } 
+        }  
 
-        props.GetItemArrayData(ItemInfoArray)
-    }
+        setTimeout(() => props.GetItemArrayData(ItemInfoArray), 1000)
 
+    }  
+    
 
-    // ItemInfoArray data set
-    // Product Name  
-    // Price    
-    // product image   
-    // number of products from the object 
-
-
-
-    // Does email or postcode match the order number details.
     function authenticateUser(userCredential, systemEntry){
         return userCredential === systemEntry ? true : false
     }

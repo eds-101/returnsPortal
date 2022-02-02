@@ -1,22 +1,25 @@
 import './App.css'  
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import HomeLogin from './Components/HomeLogin/HomeLogin'; 
-import ReturnSelector from './Components/ReturnSelector/ReturnSelector';
+import ReturnSelector from './Components/ReturnSelector/ReturnSelector'; 
+
+const arrayItem = [];
 
 function App() {  
 
-  const [itemData, setItemData] = useState([])
+  const [ItemData, setItemData] = useState([])
 
-  function GetItemInfo(data){
-    console.log(data)
-  } 
-
-  // set statue with array with can be populated with data
+  function GetItemInfo(data){      
+    
+      setItemData(data)    
+      // setItemData(ItemData => ItemData.concat(Data))
+  }      
+  // set statue with array with can be populated with data 
 
   return ( 
     <div className="App">
-      {/* <HomeLogin GetItemArrayData={GetItemInfo}/>  */}
-      {/* <ReturnSelector /> */}
+      <HomeLogin GetItemArrayData={GetItemInfo}/> 
+      <ReturnSelector SendItemData={ItemData}/>
     </div>
   );
 }
