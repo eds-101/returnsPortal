@@ -28,7 +28,7 @@ function ReturnSelector(props) {
     return( 
         <div> 
             {listOfItemsFromOrder.map((item) => {  
-                return <ItemRow key={item['itemID']} name={item['Name']} 
+                return <ItemRow key={item['ItemID']} itemID={item['ItemID']} name={item['Name']} 
                 imgURL={item['ImageURL']} quantity={item['Quantity']} 
                 price={item['Price']} returnHandler={setItemQuantity} /> 
             })} 

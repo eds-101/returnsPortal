@@ -21,34 +21,27 @@ function ItemRow(props) {
         return quantList
     } 
 
-    const formattedQuantityOptions = []
-
-    function getQuantityOptions(options) {
-         for(let r=0; r <= options.length; r++) {
-        formattedQuantityOptions.push(<option value={r}>{returnsReasons[r]}</option>)
-    }}
-
     const quantity = populateReturnQuantityOptions(props.quantity)
 
-    function returnReason(reason){
-        console.log('hello world')
-        console.log(reason.target.value)
+    function returnReason(reason, id){
+        console.log(reason.target.value) 
+        console.log(id)
     }
     
 
     return(
         
-        <div className='container'>
+        <div className='container'> 
             <div className='left'>
                 <div className='itemPicture'>
-                    <img src={props.imgURL} alt=""/>
+                    <img src={props.imgURL} alt=""/> 
                 </div>
             </div>
             <div className='middle'>
                 <h2>{props.name}</h2>
                 <div className='returnReasonsMenu'>
                     <label>Why are you returning this?</label>
-                    <select onChange={ (e) => returnReason(e)}>
+                    <select onChange={(e) => returnReason(e, props.itemID)}>
                         {returnsReasons.map((r) => <option value={r}>{r}</option>)}
                     </select> 
                 </div>
