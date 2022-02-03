@@ -31,6 +31,10 @@ function ReturnSelector(props) {
         console.log(customerChosenReturns)
     }
 
+    function addItemQuantityToReturn(itemAndQuantObject){
+
+    }
+
     // Ones the customer choses the item to return it will go into the listOfReturnFromCustomer.
 
     
@@ -43,7 +47,8 @@ function ReturnSelector(props) {
             {listOfItemsFromOrder.map((item) => {  
                 return <ItemRow key={item['ItemID']} itemID={item['ItemID']} name={item['Name']} 
                 imgURL={item['ImageURL']} quantity={item['Quantity']} 
-                price={item['Price']} returnHandler={addItemAndReturnReason} /> 
+                price={item['Price']} returnReasonHandler={addItemAndReturnReason}
+                returnQuantityHandler={addItemQuantityToReturn} /> 
             })} 
             <button onClick={ItemToBeReturned}>return</button>
         </div>
