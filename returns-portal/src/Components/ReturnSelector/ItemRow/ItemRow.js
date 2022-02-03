@@ -27,6 +27,12 @@ function ItemRow(props) {
         let StoringReasonAndItemID = {'ItemId': id, 'reason': reason.target.value}  
         props.returnHandler(StoringReasonAndItemID)
     }
+
+    function returnQuantity(quantity, id){
+        console.log(quantity.target.value)
+        // let StoringReasonAndItemID = {'ItemId': id, 'reason': reason.target.value}  
+        // props.returnHandler(StoringReasonAndItemID)
+    }
     
     // store data localy to send up to the ReturnSelector. 
 
@@ -50,8 +56,7 @@ function ItemRow(props) {
             <div className='right'>
                 <div className='returnQuantityMenu'>
                     <label>How many do you want to return?</label>
-                    
-                    <select required>
+                    <select required onChange={(e) => returnQuantity(e, props.itemID)}>
                         {quantity.map(i => <option key={i}>{Number(i)}</option>)}
                     </select>
                 </div>
