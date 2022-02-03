@@ -21,7 +21,14 @@ function ItemRow(props) {
         return quantList
     } 
 
-    const quantity = props.quantity 
+    const formattedQuantityOptions = []
+
+    function getQuantityOptions(options) {
+         for(let r=0; r <= options.length; r++) {
+        formattedQuantityOptions.push(<option value={r}>{returnsReasons[r]}</option>)
+    }}
+
+    const quantity = populateReturnQuantityOptions(props.quantity)
 
     function returnNumberOfItems(){
         console.log('hello world')
@@ -29,6 +36,7 @@ function ItemRow(props) {
     
 
     return(
+        
         <div className='container'>
             <div className='left'>
                 <div className='itemPicture'>
@@ -40,19 +48,22 @@ function ItemRow(props) {
                 <div className='returnReasonsMenu'>
                     <label>Why are you returning this?</label>
                     <select onChange={returnNumberOfItems}>
-                        {returnsReasons.map(r => <option value={r}>{r}</option>)}
+                        
+
+                        {/* for(reason in returnsReasons) {
+                         <option value={r}>{returnsReasons[r]}</option>
+                        } */}
+
+                        {/* {returnsReasons.map((r) => <option value={r}>{r}</option>)} */}
                     </select> 
-                    {/* <select >
-                        <option key={1} value="1">1</option> 
-                        <option key={2} value="2">2</option>
-                    </select> */}
                 </div>
             </div>
             <div className='right'>
                 <div className='returnQuantityMenu'>
                     <label>How many do you want to return?</label>
+                    
                     <select required>
-                        {populateReturnQuantityOptions(quantity).map(i => <option key={i}>{Number(i)}</option>)}
+                        {quantity.map(i => <option key={i}>{Number(i)}</option>)}
                     </select>
                 </div>
             </div>

@@ -17,13 +17,20 @@ function ReturnSelector(props) {
     function ItemToBeReturned(){
         console.log('click')
     }
+    
+    function setItemQuantity(q){
+        console.log('quantity')
+        console.log(q)
+    }
 
     // Ones the customer choses the item to return it will go into the listOfReturnFromCustomer.
 
     return( 
         <div> 
             {listOfItemsFromOrder.map((item) => {  
-                return <ItemRow key={item['itemID']} name={item['Name']} imgURL={item['ImageURL']} quantity={item['Quantity']} price={item['Price']} /> 
+                return <ItemRow key={item['itemID']} name={item['Name']} 
+                imgURL={item['ImageURL']} quantity={item['Quantity']} 
+                price={item['Price']} /> 
             })} 
             <button onClick={ItemToBeReturned}>return</button>
         </div>
