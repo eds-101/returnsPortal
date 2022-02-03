@@ -21,19 +21,38 @@ function ReturnSelector(props) {
 
     useEffect(() => {
         setListOfItemsFromOrder(props.SendItemData)
-    }, [props.SendItemData])  
+    }, [props.SendItemData])   
 
+    useEffect(() => {
+        setCustomerChosenReturns(customerChosenReturns) 
+        console.log(customerChosenReturns)
+    }, [customerChosenReturns])
 
     
     // Gets the ItemId and the resion for the return.
-    function addItemAndReturnReason(itemAndReturnObject){
-        setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndReturnObject])
-        console.log(customerChosenReturns)
+    function addItemAndReturnReason(itemAndReturnObject){  
+
+        let itemReturnIsFound = false
+
+        customerChosenReturns.map((item) => { 
+            if(item['ItemId'] === itemAndReturnObject['ItemId']){  
+                item['returnReason'] = itemAndReturnObject['reason']    
+                itemReturnIsFound = true
+            }  
+        }) 
+
+        if(!itemReturnIsFound){ setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndReturnObject])}
+
+        // setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndReturnObject])
     }
 
-    function addItemQuantityToReturn(itemAndQuantObject){
+    function addItemQuantityToReturn(itemAndQuantObject){ 
 
-    }
+        setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndQuantObject]) 
+
+    }  
+
+    // 
 
     // Ones the customer choses the item to return it will go into the listOfReturnFromCustomer.
 
