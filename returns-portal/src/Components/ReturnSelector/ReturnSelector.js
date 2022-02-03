@@ -31,28 +31,26 @@ function ReturnSelector(props) {
     
     // Gets the ItemId and the resion for the return.
     function addItemAndReturnReason(itemAndReturnObject){  
-
         let itemReturnIsFound = false
-
         customerChosenReturns.map((item) => { 
             if(item['ItemId'] === itemAndReturnObject['ItemId']){  
                 item['returnReason'] = itemAndReturnObject['reason']    
                 itemReturnIsFound = true
             }  
         }) 
-
         if(!itemReturnIsFound){ setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndReturnObject])}
-
-        // setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndReturnObject])
     }
 
-    function addItemQuantityToReturn(itemAndQuantObject){ 
-
-        setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndQuantObject]) 
-
+    function addItemQuantityToReturn(itemAndQuantObject){  
+        let itemReturnIsFound = false
+        customerChosenReturns.map((item) => { 
+            if(item['ItemId'] === itemAndQuantObject['ItemId']){  
+                item['returnQuantity'] = itemAndQuantObject['quantityToReturn']    
+                itemReturnIsFound = true
+            }  
+        }) 
+        if(!itemReturnIsFound){ setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndQuantObject]) }
     }  
-
-    // 
 
     // Ones the customer choses the item to return it will go into the listOfReturnFromCustomer.
 
