@@ -30,7 +30,7 @@ function ReturnSelector(props) {
             {listOfItemsFromOrder.map((item) => {  
                 return <ItemRow key={item['itemID']} name={item['Name']} 
                 imgURL={item['ImageURL']} quantity={item['Quantity']} 
-                price={item['Price']} /> 
+                price={item['Price']} returnHandler={setItemQuantity} /> 
             })} 
             <button onClick={ItemToBeReturned}>return</button>
         </div>

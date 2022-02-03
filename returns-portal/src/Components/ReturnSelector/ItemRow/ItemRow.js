@@ -30,8 +30,9 @@ function ItemRow(props) {
 
     const quantity = populateReturnQuantityOptions(props.quantity)
 
-    function returnNumberOfItems(){
+    function returnReason(reason){
         console.log('hello world')
+        console.log(reason.target.value)
     }
     
 
@@ -47,14 +48,8 @@ function ItemRow(props) {
                 <h2>{props.name}</h2>
                 <div className='returnReasonsMenu'>
                     <label>Why are you returning this?</label>
-                    <select onChange={returnNumberOfItems}>
-                        
-
-                        {/* for(reason in returnsReasons) {
-                         <option value={r}>{returnsReasons[r]}</option>
-                        } */}
-
-                        {/* {returnsReasons.map((r) => <option value={r}>{r}</option>)} */}
+                    <select onChange={ (e) => returnReason(e)}>
+                        {returnsReasons.map((r) => <option value={r}>{r}</option>)}
                     </select> 
                 </div>
             </div>
