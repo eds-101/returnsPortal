@@ -14,13 +14,14 @@ function ReturnSelector(props) {
         setlistOfItemsFromOrder(props.SendItemData)
     }, [props.SendItemData])  
 
+    
     function ItemToBeReturned(){
         console.log('click')
     }
     
-    function setItemQuantity(q){
-        console.log('quantity')
-        console.log(q)
+    // Gets the ItemId and the resion for the return.
+    function setItemReasion(info){
+        console.log(info)
     }
 
     // Ones the customer choses the item to return it will go into the listOfReturnFromCustomer.
@@ -30,7 +31,7 @@ function ReturnSelector(props) {
             {listOfItemsFromOrder.map((item) => {  
                 return <ItemRow key={item['ItemID']} itemID={item['ItemID']} name={item['Name']} 
                 imgURL={item['ImageURL']} quantity={item['Quantity']} 
-                price={item['Price']} returnHandler={setItemQuantity} /> 
+                price={item['Price']} returnHandler={setItemReasion} /> 
             })} 
             <button onClick={ItemToBeReturned}>return</button>
         </div>

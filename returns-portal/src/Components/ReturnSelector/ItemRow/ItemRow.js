@@ -24,10 +24,11 @@ function ItemRow(props) {
     const quantity = populateReturnQuantityOptions(props.quantity)
 
     function returnReason(reason, id){
-        console.log(reason.target.value) 
-        console.log(id)
+        let StoringReasonAndItemID = {'ItemId': id, 'reason': reason.target.value}  
+        props.returnHandler(StoringReasonAndItemID)
     }
     
+    // store data localy to send up to the ReturnSelector. 
 
     return(
         
