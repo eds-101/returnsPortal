@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react'
 
 function ReturnSelector(props) {     
 
-
     const [listOfItemsFromOrder, setListOfItemsFromOrder] = useState([])    
 
     const [customerChosenReturns, setCustomerChosenReturns] = useState([])
@@ -63,14 +62,16 @@ function ReturnSelector(props) {
     } 
 
     return( 
-        <div> 
+        <div className='returnSelectorContainer'> 
             {listOfItemsFromOrder.map((item) => {  
                 return <ItemRow key={item['ItemID']} itemID={item['ItemID']} name={item['Name']} 
                 imgURL={item['ImageURL']} quantity={item['Quantity']} 
                 price={item['Price']} returnReasonHandler={addItemAndReturnReason}
                 returnQuantityHandler={addItemQuantityToReturn} /> 
-            })} 
-            <button onClick={ItemToBeReturned}>return</button>
+            })}  
+            <div className='buttonContainer'>
+                <button onClick={ItemToBeReturned} className="buttonReturnItems">Review Items</button>
+            </div>
         </div>
     )
 }
