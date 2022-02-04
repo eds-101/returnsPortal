@@ -17,47 +17,50 @@ function ReturnSelector(props) {
 
     //item id
     //item quantity
-    //reason for return
+    //reason for return 
+
+    //quantityToReturn
 
     useEffect(() => {
         setListOfItemsFromOrder(props.SendItemData)
     }, [props.SendItemData])   
 
     useEffect(() => {
-        setCustomerChosenReturns(customerChosenReturns) 
-        console.log(customerChosenReturns)
+        setCustomerChosenReturns(customerChosenReturns)  
+        console.log(customerChosenReturns)  
     }, [customerChosenReturns])
 
     
     // Gets the ItemId and the resion for the return.
-    function addItemAndReturnReason(itemAndReturnObject){  
+    function addItemAndReturnReason(itemAndReturnObject){   
         let itemReturnIsFound = false
-        customerChosenReturns.map((item) => { 
-            if(item['ItemId'] === itemAndReturnObject['ItemId']){  
-                item['returnReason'] = itemAndReturnObject['reason']    
-                itemReturnIsFound = true
+        customerChosenReturns.map((customerReturnItem) => { 
+            if(customerReturnItem['ItemId'] === itemAndReturnObject['ItemId']){  
+                customerReturnItem['Reason'] = itemAndReturnObject['Reason']    
+                itemReturnIsFound = true 
             }  
         }) 
-        if(!itemReturnIsFound){ setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndReturnObject])}
+        if(!itemReturnIsFound){ setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndReturnObject])}  
     }
 
-    function addItemQuantityToReturn(itemAndQuantObject){  
+    function addItemQuantityToReturn(itemAndQuantObject){   
         let itemReturnIsFound = false
-        customerChosenReturns.map((item) => { 
-            if(item['ItemId'] === itemAndQuantObject['ItemId']){  
-                item['returnQuantity'] = itemAndQuantObject['quantityToReturn']    
+        customerChosenReturns.map((customerReturnItem) => { 
+            if(customerReturnItem['ItemId'] === itemAndQuantObject['ItemId']){  
+                customerReturnItem['Quantity'] = itemAndQuantObject['Quantity']     
                 itemReturnIsFound = true
             }  
         }) 
-        if(!itemReturnIsFound){ setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndQuantObject]) }
+        if(!itemReturnIsFound){ setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndQuantObject]) }  
+
     }  
 
     // Ones the customer choses the item to return it will go into the listOfReturnFromCustomer.
 
     
     function ItemToBeReturned(){
-        console.log('click')
-    }
+        setCustomerChosenReturns(currentReturns => currentReturns.filter((item) => item['Quantity'] >= 1))
+    } 
 
     return( 
         <div> 

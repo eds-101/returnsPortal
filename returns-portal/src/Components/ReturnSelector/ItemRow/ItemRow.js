@@ -24,12 +24,12 @@ function ItemRow(props) {
     const quantity = populateReturnQuantityOptions(props.quantity)
 
     function returnReason(reason, id){
-        let StoringReasonAndItemID = {'ItemId': id, 'reason': reason.target.value}  
+        let StoringReasonAndItemID = {'ItemId': id, 'Reason': reason.target.value}  
         props.returnReasonHandler(StoringReasonAndItemID)
     }
 
     function returnQuantity(quantity, id){
-        const itemQuantityToReturn = {'ItemId': id, 'quantityToReturn': quantity.target.value}
+        const itemQuantityToReturn = {'ItemId': id, 'Quantity': Number(quantity.target.value)}
         props.returnQuantityHandler(itemQuantityToReturn)  
     }
     
@@ -56,7 +56,7 @@ function ItemRow(props) {
                 <div className='returnQuantityMenu'>
                     <label>How many do you want to return?</label>
                     <select required onChange={(e) => returnQuantity(e, props.itemID)}>
-                        {quantity.map(i => <option key={i}>{Number(i)}</option>)}
+                        {quantity.map(i => <option value={i}>{Number(i)}</option>)}
                     </select>
                 </div>
             </div>
