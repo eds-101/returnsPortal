@@ -6,7 +6,11 @@ import { useEffect, useState } from 'react'
 // anitane@gmail.com 
 
 function HomeLogin(props){ 
-    const [incorrectAlert, setIncorrectAlert] = useState('')    
+    const [incorrectAlert, setIncorrectAlert] = useState('')     
+
+    useEffect(() => {
+        setIncorrectAlert(incorrectAlert)
+    }, [incorrectAlert])
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY 
 
@@ -28,21 +32,27 @@ function HomeLogin(props){
             const userEmail = orderDetails[0].Email
             const userPostCode = orderDetails[0].PostCode 
 
-            const auth = emailAddress === '' ? authenticateUser(postcode, userPostCode) : authenticateUser(emailAddress, userEmail)
+            const auth = emailAddress === '' ? authenticateUserPostCode(postcode, userPostCode) : authenticateUserEmail(emailAddress, userEmail)
             console.log(auth)
             console.log(userEmail, userPostCode)
 
-            auth ? fetchOrderDetails(orderNumber) : incorrectDetailsAlert()
+           if(auth) {fetchOrderDetails(orderNumber)}  
+           setIncorrectAlert('')
 
         } catch(error) {
-            console.log(error)
+            console.log(error)  
+            setIncorrectAlert('Invaild Order Number')
         }
+    }
+
+    function authenticateUserPostCode(userCredential, systemEntry){
+        if(userCredential !== systemEntry){  setIncorrectAlert('Postcode was invaild') } 
+        return userCredential === systemEntry ? true : false
     } 
 
-    function incorrectDetailsAlert(){
-        //is order no found? if not setIncorrectAlert("order no not found. Use format xyx")
-        
-        setIncorrectAlert("Try again")
+    function authenticateUserEmail(userCredential, systemEntry){
+        if(userCredential !== systemEntry){  setIncorrectAlert('Email was invaild') } 
+        return userCredential === systemEntry ? true : false
     }
 
     async function fetchOrderDetails(orderNumber){
@@ -94,13 +104,6 @@ function HomeLogin(props){
         setTimeout(() => props.GetItemArrayData(ItemInfoArray), 1000)
 
     }  
-    
-
-    function authenticateUser(userCredential, systemEntry){
-        //
-        
-        return userCredential === systemEntry ? true : false
-    }
 
     return(
         <div className='HomeLogin'>   
