@@ -10,6 +10,7 @@
 .left{
     /* background-color: red; */
     width: 15vw;
+    margin-left: 15px;
 }
 
 .middle{
@@ -20,6 +21,7 @@
 
 .right{
     /* background-color: orange; */
+    text-align: center;
     width: 50vw;
     margin: 10px;
 }

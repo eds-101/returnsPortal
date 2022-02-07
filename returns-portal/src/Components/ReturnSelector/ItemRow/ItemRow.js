@@ -44,20 +44,21 @@ function ItemRow(props) {
                 </div>
             </div>
             <div className='middle'>
-                <h2>{props.name}</h2>
+                <div className='returnQuantityMenu'>
+                    <h2>{props.name}</h2>
+                        <label>How many do you want to return?</label>
+                        <select required onChange={(e) => returnQuantity(e, props.itemID)}>
+                            {quantity.map(i => <option value={i}>{Number(i)}</option>)}
+                        </select>
+                    </div>
+                </div>
+            <div className='right'>
                 <div className='returnReasonsMenu'>
                     <label>Why are you returning this?</label>
                     <select onChange={(e) => returnReason(e, props.itemID)}>
+                        <option value="">Select a reason...</option>
                         {returnsReasons.map((r) => <option value={r}>{r}</option>)}
                     </select> 
-                </div>
-            </div>
-            <div className='right'>
-                <div className='returnQuantityMenu'>
-                    <label>How many do you want to return?</label>
-                    <select required onChange={(e) => returnQuantity(e, props.itemID)}>
-                        {quantity.map(i => <option value={i}>{Number(i)}</option>)}
-                    </select>
                 </div>
             </div>
         </div>

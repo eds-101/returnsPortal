@@ -110,10 +110,7 @@ function HomeLogin(props){
     }  
 
     return(
-        <div className='HomeLogin'>   
-            <div className="Header">
-                <p className="ItemHeader">Tu Pack Returns Portal</p> 
-            </div> 
+        <div>
             <p className="Info">Bought an item you want to send back? Type in your <b>Order Number</b> then <b>Email</b> or <b>Postcode</b> below.</p>
             <form className="HomeLoginForm" onSubmit={handleSubmit}>  
                 <div className="HomeLoginFormItem">
@@ -134,9 +131,7 @@ function HomeLogin(props){
                     <p>{incorrectAlert}</p>
                 </div>
             </form>   
-            <footer>
-                <a href='https://support.tupack.co.uk/hc/en-gb'>Help and Support</a>
-            </footer>
+
         </div>
     )
 } 

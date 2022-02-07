@@ -1,4 +1,5 @@
 import './App.css'  
+import './Components/HomeLogin/HomeLogin.css'
 import { useState } from 'react'
 import HomeLogin from './Components/HomeLogin/HomeLogin'; 
 import ReturnSelector from './Components/ReturnSelector/ReturnSelector';  
@@ -16,10 +17,19 @@ function App() {
   }      
 
   return ( 
-    <div className="App">
-      { showScreen === 'Home' ? <HomeLogin getFinalisedOrder={populateOrder}/> : null }
-      { showScreen === 'SelectReturn' ? <ReturnSelector loadOrder={orderData}/> : null}
+    <div className='HomeLogin'>   
+      <div className="Header">
+          <p className="ItemHeader">Tu Pack Returns Portal</p> 
+      </div> 
+      <div className="App">
+        { showScreen === 'Home' ? <HomeLogin getFinalisedOrder={populateOrder}/> : null }
+        { showScreen === 'SelectReturn' ? <ReturnSelector loadOrder={orderData}/> : null}
+      </div>
+      <footer>
+        <a href='https://support.tupack.co.uk/hc/en-gb'>Help and Support</a>
+      </footer>
     </div>
+
   );
 }
 
