@@ -22,20 +22,20 @@ function HomeLogin(props){
         console.log(orderNumber)
         
         
-        const postcode = e.target[2].value 
-        const emailAddress = e.target[1].value
+        const postcode = e.target[2].value.trim()
+        const emailAddress = e.target[1].value.trim()
        
         try { 
 
             const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${API_KEY}&OrderNumber=${orderNumber}`) 
             const orderDetails = await getOrderDetails.json() 
+            console.log(orderDetails)
             
-            // order data 
+            const orderDateparsed = orderDetails[0].OrderDate.slice(0,10)
             // 2021-06-16T10:25:36.7951757  
-            // Date.now
-            // get todays data and compare it to the order data to see weather it is on the 30 day limit?
+            const validateDate = validateOrderDate(orderDateparsed, 90)
 
-            console.log(orderDetails[0].OrderDate)
+            console.log(orderDateparsed, validateDate)
 
             const userEmail = orderDetails[0].Email
             const userPostCode = orderDetails[0].PostCode 
@@ -48,7 +48,7 @@ function HomeLogin(props){
 
         } catch(error) {
             console.log(error)  
-            setIncorrectAlert('Invaild Order Number')
+            // setIncorrectAlert('Invaild Order Number')
         }
     }
 
@@ -60,6 +60,13 @@ function HomeLogin(props){
     function authenticateUserEmail(userCredential, systemEntry){
         if(userCredential !== systemEntry){  setIncorrectAlert('Email was invaild') } 
         return userCredential === systemEntry ? true : false
+    }
+
+    function validateOrderDate(orderDate, daysToAllowReturns) {
+        const daysSinceOrderRaw = new Date - new Date(orderDate)
+        const daysSinceOrder = daysSinceOrderRaw/(1000 * 3600 * 24)
+        console.log(daysSinceOrder)
+        return daysSinceOrder < daysToAllowReturns ? true : false
     }
 
     async function fetchOrderDetails(orderNumber){
