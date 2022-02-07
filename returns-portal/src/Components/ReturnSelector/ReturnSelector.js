@@ -11,6 +11,7 @@ function ReturnSelector(props) {
 
     useEffect(() => {
         setAllProductsInOrder(props.loadOrder)
+        console.log(allProductsInOrder)  
     }, [props.loadOrder])   
 
     useEffect(() => {
@@ -42,9 +43,6 @@ function ReturnSelector(props) {
         if(!itemReturnIsFound){ setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndQuantObject]) }  
 
     }  
-
-    // Ones the customer choses the item to return it will go into the listOfReturnFromCustomer.
-
     
     function submitCustomerReturn(){
         setCustomerChosenReturns(currentReturns => currentReturns.filter((item) => item['Quantity'] >= 1)
@@ -56,10 +54,10 @@ function ReturnSelector(props) {
 
     return( 
         <div className='returnSelectorContainer'> 
-            {allProductsInOrder.map((item) => {  
-                return <ItemRow key={item['ID']} itemID={item['ID']} name={item['Name']} 
-                imgURL={item['ImageURL']} quantity={item['Quantity']} 
-                price={item['Price']} returnReasonHandler={addItemAndReturnReason}
+            {allProductsInOrder.map((p) => {  
+                return <ItemRow key={p['ID']} itemID={p['ID']} name={p['Name']} 
+                imgURL={p['ImageURL']} quantity={Number(p['Quantity'])} 
+                price={p['Price']} returnReasonHandler={addItemAndReturnReason}
                 returnQuantityHandler={addItemQuantityToReturn} /> 
             })}  
             <div className='buttonContainer'>

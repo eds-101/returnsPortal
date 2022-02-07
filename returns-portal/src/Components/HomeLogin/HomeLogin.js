@@ -74,6 +74,7 @@ function HomeLogin(props){
                     let id = productsRaw[i].ProductId, quantity = productsRaw[i].Quantity 
                     product['ID'] = id 
                     product['Quantity'] = quantity
+                    console.log(quantity)
                     product['OrderDate'] = orderDate
                     productsInOrder.push(product) 
                     product = {}
@@ -90,11 +91,10 @@ function HomeLogin(props){
 
         try{
             initialOrderDetails.map(async (initialProductData) => {
-                console.log(initialProductData)
                 let productApiCall = await fetch(`https://api.mintsoft.co.uk/api/Product/${initialProductData['ID']}?APIKey=${API_KEY}`) 
                 let rawProductData = await productApiCall.json()  
                 product['ID'] = initialProductData['ID'] 
-                product['Quantity'] = initialProductData['ItemQuantity']
+                product['Quantity'] = initialProductData['Quantity']
                 product['OrderDate'] = initialProductData['OrderDate']
                 product['Name'] = rawProductData.Name  
                 product['Price'] = rawProductData.Price 
