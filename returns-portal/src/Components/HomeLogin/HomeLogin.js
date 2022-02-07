@@ -43,7 +43,7 @@ function HomeLogin(props){
             console.log(auth)
             console.log(userEmail, userPostCode)
 
-           if(auth) {fetchOrderDetails(orderNumber)}  
+           if(auth) {fetchOrderDetails(orderNumber, orderDateparsed)}  
            setIncorrectAlert('')
 
         } catch(error) {
@@ -69,7 +69,7 @@ function HomeLogin(props){
         return daysSinceOrder < daysToAllowReturns ? true : false
     }
 
-    async function fetchOrderDetails(orderNumber){
+    async function fetchOrderDetails(orderNumber, orderDate){
             try { 
                 const getOrderItems = await fetch(`https://api.mintsoft.co.uk/api/Order/${orderNumber}/Items?APIKey=${API_KEY}`) 
                 const orderItems = await getOrderItems.json()  
@@ -84,6 +84,7 @@ function HomeLogin(props){
                     let quantity = orderItems[i].Quantity 
                     products['ItemID'] = productId 
                     products['ItemQuantity'] = quantity
+                    products['OrderDate'] = orderDate
                     productsArray.push(products) 
                     products = {}
                 }
@@ -107,6 +108,7 @@ function HomeLogin(props){
                 ItemObject['ItemID'] = item['ItemID'] 
                 ItemObject['Name'] = ItemInfo.Name  
                 ItemObject['Quantity'] = item['ItemQuantity']
+                ItemObject['OrderDate'] = item['OrderDate']
                 ItemObject['Price'] = ItemInfo.Price 
                 ItemObject['ImageURL'] = ItemInfo.ImageURL  
                 ItemInfoArray.push(ItemObject) 

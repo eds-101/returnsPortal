@@ -13,7 +13,8 @@ function App() {
   const [showScreen, setShowScreen] = useState('Home') 
 
   function GetItemInfo(data){      
-      setItemData(data)     
+    console.log(data)  
+    setItemData(data)     
       setShowScreen('SelectReturn')
   }      
 
