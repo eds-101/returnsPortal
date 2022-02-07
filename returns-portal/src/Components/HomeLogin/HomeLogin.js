@@ -31,9 +31,10 @@ function HomeLogin(props){
             const orderDetails = await getOrderDetails.json() 
             
             // order data 
-            // 2021-06-16T10:25:36.7951757 
-            // 
-            
+            // 2021-06-16T10:25:36.7951757  
+            // Date.now
+            // get todays data and compare it to the order data to see weather it is on the 30 day limit?
+
             console.log(orderDetails[0].OrderDate)
 
             const userEmail = orderDetails[0].Email
