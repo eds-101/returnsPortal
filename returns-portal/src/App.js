@@ -7,17 +7,25 @@ import ReturnSelector from './Components/ReturnSelector/ReturnSelector';
 
 function App() {  
 
-  // uncomment this when API has need confirmed. 
-  const [ItemData, setItemData] = useState([])
+  // uncomment this when API has need confirmed.  
+
+  // number HomeLogin 1-name, ReturnSelector 2-name, Conform 3-name, 
+
+  const [ItemData, setItemData] = useState([]) 
+
+  const [showScreen, setShowScreen] = useState('Home') 
+
+  useEffect(() => { setShowScreen(showScreen)}, [showScreen])
 
   function GetItemInfo(data){      
-      setItemData(data)    
+      setItemData(data)     
+      setShowScreen('SelectReturn')
   }      
 
   return ( 
     <div className="App">
-      <HomeLogin GetItemArrayData={GetItemInfo}/>  
-      <ReturnSelector SendItemData={ItemData}/>
+      { showScreen === 'Home' ? <HomeLogin GetItemArrayData={GetItemInfo}/> : null }
+      { showScreen === 'SelectReturn' ? <ReturnSelector SendItemData={ItemData}/> : null}
     </div>
   );
 }
