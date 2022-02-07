@@ -5,24 +5,13 @@ import { useState, useEffect } from 'react'
 
 function ReturnSelector(props) {     
 
-    const [listOfItemsFromOrder, setListOfItemsFromOrder] = useState([])    
+    const [allProductsInOrder, setAllProductsInOrder] = useState([])    
 
     const [customerChosenReturns, setCustomerChosenReturns] = useState([])
 
-    //return data needed
-    //POST /api/Return/CreateReturn/{OrderId}
-    //POST /api/Return/{id}/AddItem
-    //POST /api/Return/{id}/Confirm
-
-    //item id
-    //item quantity
-    //reason for return 
-
-    //quantityToReturn
-
     useEffect(() => {
-        setListOfItemsFromOrder(props.SendItemData)
-    }, [props.SendItemData])   
+        setAllProductsInOrder(props.loadOrder)
+    }, [props.loadOrder])   
 
     useEffect(() => {
         setCustomerChosenReturns(customerChosenReturns)  
@@ -67,8 +56,8 @@ function ReturnSelector(props) {
 
     return( 
         <div className='returnSelectorContainer'> 
-            {listOfItemsFromOrder.map((item) => {  
-                return <ItemRow key={item['ItemID']} itemID={item['ItemID']} name={item['Name']} 
+            {allProductsInOrder.map((item) => {  
+                return <ItemRow key={item['ID']} itemID={item['ID']} name={item['Name']} 
                 imgURL={item['ImageURL']} quantity={item['Quantity']} 
                 price={item['Price']} returnReasonHandler={addItemAndReturnReason}
                 returnQuantityHandler={addItemQuantityToReturn} /> 

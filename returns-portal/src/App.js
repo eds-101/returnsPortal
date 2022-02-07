@@ -1,27 +1,24 @@
 import './App.css'  
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import HomeLogin from './Components/HomeLogin/HomeLogin'; 
 import ReturnSelector from './Components/ReturnSelector/ReturnSelector';  
 
 // import DummyData from './Components/Data/orderData'
 
 function App() {  
-
-  // uncomment this when API has need confirmed.  
-
-  const [ItemData, setItemData] = useState([]) 
+  const [orderData, setOrderData] = useState([]) 
   const [showScreen, setShowScreen] = useState('Home') 
 
-  function GetItemInfo(data){      
-    console.log(data)  
-    setItemData(data)     
+  function populateOrder(order){      
+    console.log(order)  
+    setOrderData(order)     
       setShowScreen('SelectReturn')
   }      
 
   return ( 
     <div className="App">
-      { showScreen === 'Home' ? <HomeLogin GetItemArrayData={GetItemInfo}/> : null }
-      { showScreen === 'SelectReturn' ? <ReturnSelector SendItemData={ItemData}/> : null}
+      { showScreen === 'Home' ? <HomeLogin getFinalisedOrder={populateOrder}/> : null }
+      { showScreen === 'SelectReturn' ? <ReturnSelector loadOrder={orderData}/> : null}
     </div>
   );
 }
