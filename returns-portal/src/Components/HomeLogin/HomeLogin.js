@@ -28,10 +28,16 @@ function HomeLogin(props){
         try { 
 
             const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${API_KEY}&OrderNumber=${orderNumber}`) 
-            const orderDetails = await getOrderDetails.json()
+            const orderDetails = await getOrderDetails.json() 
+            
+            // order data 
+            // 2021-06-16T10:25:36.7951757 
+            // 
+            
+            console.log(orderDetails[0].OrderDate)
+
             const userEmail = orderDetails[0].Email
             const userPostCode = orderDetails[0].PostCode 
-
             const auth = emailAddress === '' ? authenticateUserPostCode(postcode, userPostCode) : authenticateUserEmail(emailAddress, userEmail)
             console.log(auth)
             console.log(userEmail, userPostCode)
@@ -58,7 +64,9 @@ function HomeLogin(props){
     async function fetchOrderDetails(orderNumber){
             try { 
                 const getOrderItems = await fetch(`https://api.mintsoft.co.uk/api/Order/${orderNumber}/Items?APIKey=${API_KEY}`) 
-                const orderItems = await getOrderItems.json() 
+                const orderItems = await getOrderItems.json()  
+
+                    console.log(orderItems) 
 
                 let productsArray = []
                 let products = {}
@@ -87,7 +95,7 @@ function HomeLogin(props){
         try{
             productsArray.map(async (item) => {
                 let GetItemInfo = await fetch(`https://api.mintsoft.co.uk/api/Product/${item['ItemID']}?APIKey=${API_KEY}`) 
-                let ItemInfo = await GetItemInfo.json()   
+                let ItemInfo = await GetItemInfo.json()  
                 ItemObject['ItemID'] = item['ItemID'] 
                 ItemObject['Name'] = ItemInfo.Name  
                 ItemObject['Quantity'] = item['ItemQuantity']

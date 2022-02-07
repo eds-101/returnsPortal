@@ -9,13 +9,8 @@ function App() {
 
   // uncomment this when API has need confirmed.  
 
-  // number HomeLogin 1-name, ReturnSelector 2-name, Conform 3-name, 
-
   const [ItemData, setItemData] = useState([]) 
-
   const [showScreen, setShowScreen] = useState('Home') 
-
-  useEffect(() => { setShowScreen(showScreen)}, [showScreen])
 
   function GetItemInfo(data){      
       setItemData(data)     
