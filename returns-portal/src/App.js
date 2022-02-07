@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react'
 import HomeLogin from './Components/HomeLogin/HomeLogin'; 
 import ReturnSelector from './Components/ReturnSelector/ReturnSelector';  
 
-import DummyData from './Components/Data/orderData'
-
+// import DummyData from './Components/Data/orderData'
 
 function App() {  
 
@@ -18,7 +17,7 @@ function App() {
   return ( 
     <div className="App">
       <HomeLogin GetItemArrayData={GetItemInfo}/>  
-      <ReturnSelector SendItemData={DummyData}/>
+      <ReturnSelector SendItemData={ItemData}/>
     </div>
   );
 }

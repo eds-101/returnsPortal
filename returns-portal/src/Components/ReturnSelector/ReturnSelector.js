@@ -57,8 +57,12 @@ function ReturnSelector(props) {
     // Ones the customer choses the item to return it will go into the listOfReturnFromCustomer.
 
     
-    function ItemToBeReturned(){
-        setCustomerChosenReturns(currentReturns => currentReturns.filter((item) => item['Quantity'] >= 1))
+    function submitCustomerReturn(){
+        setCustomerChosenReturns(currentReturns => currentReturns.filter((item) => item['Quantity'] >= 1)
+        // POST /api/Return/CreateReturn/{OrderId}
+        // POST /api/Return/{id}/AddItem
+        // POST /api/Return/{id}/Confirm
+        )
     } 
 
     return( 
@@ -70,7 +74,7 @@ function ReturnSelector(props) {
                 returnQuantityHandler={addItemQuantityToReturn} /> 
             })}  
             <div className='buttonContainer'>
-                <button onClick={ItemToBeReturned} className="buttonReturnItems">Review Items</button>
+                <button onClick={submitCustomerReturn} className="buttonReturnItems">Review Items</button>
             </div>
         </div>
     )

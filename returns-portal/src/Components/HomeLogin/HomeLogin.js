@@ -14,7 +14,10 @@ function HomeLogin(props){
         // Needs CORS approval when running on localhost
         e.preventDefault()  
         
-        const orderNumber = e.target[0].value
+        const orderNumber = e.target[0].value.slice(3)
+        console.log(orderNumber)
+        
+        
         const postcode = e.target[2].value 
         const emailAddress = e.target[1].value
        
@@ -37,6 +40,8 @@ function HomeLogin(props){
     } 
 
     function incorrectDetailsAlert(){
+        //is order no found? if not setIncorrectAlert("order no not found. Use format xyx")
+        
         setIncorrectAlert("Try again")
     }
 
@@ -92,6 +97,8 @@ function HomeLogin(props){
     
 
     function authenticateUser(userCredential, systemEntry){
+        //
+        
         return userCredential === systemEntry ? true : false
     }
 
@@ -104,16 +111,16 @@ function HomeLogin(props){
             <form className="HomeLoginForm" onSubmit={handleSubmit}>  
                 <div className="HomeLoginFormItem">
                     <label>Order Number</label>
-                    <input type="text"/> 
+                    <input type="text" placeholder="PCP17043"/> 
                 </div> 
                 <div className="HomeLoginFormItem">
                     <label>Email</label>
-                    <input type="text"/>
+                    <input type="text" placeholder='anitane@gmail.com'/>
                 </div> 
                 <p className="OrText">or</p>
                 <div className="HomeLoginFormItem">
                     <label>Postcode</label>
-                    <input type="text"/> 
+                    <input type="text" placeholder="N20JJ"/> 
                 </div>
                 <button className="SubmitButton" type="submit">Submit</button> 
                 <div className='IncorrectDetails'>
