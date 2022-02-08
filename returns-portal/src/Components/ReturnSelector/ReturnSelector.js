@@ -56,7 +56,7 @@ function ReturnSelector(props) {
     return( 
         <div className='returnSelectorContainer'> 
             {allProductsInOrder.map((p) => {  
-                return <ItemRow key={p['ID']} itemID={p['ID']} name={p['Name']} 
+                return <ItemRow key={p['ID']} itemID={p['ID']} name={p['Name']} returnable={p['Returnable']}
                 imgURL={p['ImageURL']} quantity={Number(p['Quantity'])} 
                 price={p['Price']} returnReasonHandler={addItemAndReturnReason}
                 returnQuantityHandler={addItemQuantityToReturn} /> 
