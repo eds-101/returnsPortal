@@ -6,11 +6,15 @@ import { useEffect, useState } from 'react'
 // anitane@gmail.com 
 
 function HomeLogin(props){ 
-    const [incorrectAlert, setIncorrectAlert] = useState('')     
+    const [incorrectAlert, setIncorrectAlert] = useState('')      
+
+    const [showSubmitted, setShowSubmitted] = useState(true)
 
     useEffect(() => {
         setIncorrectAlert(incorrectAlert)
-    }, [incorrectAlert])
+    }, [incorrectAlert]) 
+
+    function switchUserInput(){ showSubmitted ? setShowSubmitted(false) :  setShowSubmitted(true)}
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY 
 
@@ -18,7 +22,7 @@ function HomeLogin(props){
 
         e.preventDefault()  
         
-        const submittedOrderNumber = e.target[0].value.replace(/\D/g, "") 
+        const submittedOrderNumber = e.target[0].value.replace(/\D/g, "").trim()
         const submittedPostcode = e.target[2].value.trim()
         const submittedEmailAddress = e.target[1].value.trim()
        
@@ -118,15 +122,16 @@ function HomeLogin(props){
                     <label>Order Number</label>
                     <input type="text" placeholder="PCP17043"/> 
                 </div> 
-                <div className="HomeLoginFormItem">
-                    <label>Email</label>
-                    <input type="text" placeholder='anitane@gmail.com'/>
-                </div> 
-                <p className="OrText">or</p>
-                <div className="HomeLoginFormItem">
+                {showSubmitted ?  <div className="HomeLoginFormItem">  
                     <label>Postcode</label>
                     <input type="text" placeholder="N20JJ"/> 
-                </div>
+                </div> : <div className="HomeLoginFormItem">
+                    <label>Email</label>
+                    <input type="text" placeholder='anitane@gmail.com'/>
+                </div>  }  
+
+                { showSubmitted ? <button type="button" className='switchUserInput' onClick={switchUserInput}>Enter email instead</button> : <button className='switchUserInput' type="button" onClick={switchUserInput}>Enter postcode instead</button>}  
+
                 <button className="SubmitButton" type="submit">Submit</button> 
                 <div className='IncorrectDetails'>
                     <p>{incorrectAlert}</p>
