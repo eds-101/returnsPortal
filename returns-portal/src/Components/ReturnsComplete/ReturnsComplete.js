@@ -1,6 +1,9 @@
 import './ReturnsComplete.css' 
+import { useState } from 'react'
 
 function ReturnsComplete(props){  
+
+    const [completedReturns, setCompletedReturns] = useState([])
 
     function returnToHomePage(){ props.getHomePageReturn()}
 
