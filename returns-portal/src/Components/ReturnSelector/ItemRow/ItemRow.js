@@ -46,19 +46,20 @@ function ItemRow(props) {
             <div className='middle'>
                 <div className='returnQuantityMenu'>
                     <h2>{props.name}</h2>
-                        <label>How many do you want to return?</label>
-                        <select required onChange={(e) => returnQuantity(e, props.itemID, props.name, props.ImageURL)}>
+                        { props.returnable ? <label>How many do you want to return?</label> : null}
+                        { props.returnable ? <select required onChange={(e) => returnQuantity(e, props.itemID, props.name, props.ImageURL)}>
                             {quantity.map(i => <option value={i}>{Number(i)}</option>)}
-                        </select>
-                    </div>
+                        </select> : null}
+                    </div> 
+                    { props.returnable ? null : <p>Item is outside the return perirod</p>}
                 </div>
             <div className='right'>
                 <div className='returnReasonsMenu'>
-                    <label>Why are you returning this?</label>
-                    <select onChange={(e) => returnReason(e, props.itemID, props.name, props.ImageURL)}>
+                { props.returnable ? <label>Why are you returning this?</label> : null }
+                    { props.returnable ? <select onChange={(e) => returnReason(e, props.itemID, props.name, props.ImageURL)}>
                         <option value="">Select a reason...</option>
                         {returnsReasons.map((r) => <option value={r}>{r}</option>)}
-                    </select> 
+                    </select> : null }
                 </div>
             </div>
         </div>
