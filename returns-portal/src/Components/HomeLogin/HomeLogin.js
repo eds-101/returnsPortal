@@ -20,8 +20,7 @@ function HomeLogin(props){
         
         const orderNumber = e.target[0].value.slice(3)
         console.log(orderNumber)
-        
-        
+    
         const postcode = e.target[2].value.trim()
         const emailAddress = e.target[1].value.trim()
        

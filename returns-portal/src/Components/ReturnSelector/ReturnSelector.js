@@ -61,8 +61,11 @@ function ReturnSelector(props) {
         setCustomerChosenReturns(currentReturns => currentReturns.filter((item) => item['Quantity'] >= 1)
         // POST /api/Return/CreateReturn/{OrderId}
         // POST /api/Return/{id}/AddItem
-        // POST /api/Return/{id}/Confirm
-        )
+        // POST /api/Return/{id}/Confirm 
+        )   
+
+        // true should be changed if submit does not work. 
+        props.getVerifiedItemReturns(true)
     } 
 
     return( 
