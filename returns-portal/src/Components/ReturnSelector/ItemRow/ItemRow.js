@@ -23,13 +23,13 @@ function ItemRow(props) {
 
     const quantity = populateReturnQuantityOptions(props.quantity)
 
-    function returnReason(reason, id){
-        let StoringReasonAndItemID = {'ItemId': id, 'Reason': reason.target.value}  
+    function returnReason(reason, id, name, imageURL){
+        let StoringReasonAndItemID = {'ItemId': id, 'Reason': reason.target.value, 'Name': name, 'ImageURL': imageURL}  
         props.returnReasonHandler(StoringReasonAndItemID)
     }
 
-    function returnQuantity(quantity, id){
-        const itemQuantityToReturn = {'ItemId': id, 'Quantity': Number(quantity.target.value)}
+    function returnQuantity(quantity, id, name, imageURL){
+        const itemQuantityToReturn = {'ItemId': id, 'Quantity': Number(quantity.target.value), 'Name': name, 'ImageURL': imageURL}
         props.returnQuantityHandler(itemQuantityToReturn)  
     }
     
@@ -47,7 +47,7 @@ function ItemRow(props) {
                 <div className='returnQuantityMenu'>
                     <h2>{props.name}</h2>
                         <label>How many do you want to return?</label>
-                        <select required onChange={(e) => returnQuantity(e, props.itemID)}>
+                        <select required onChange={(e) => returnQuantity(e, props.itemID, props.name, props.ImageURL)}>
                             {quantity.map(i => <option value={i}>{Number(i)}</option>)}
                         </select>
                     </div>
@@ -55,7 +55,7 @@ function ItemRow(props) {
             <div className='right'>
                 <div className='returnReasonsMenu'>
                     <label>Why are you returning this?</label>
-                    <select onChange={(e) => returnReason(e, props.itemID)}>
+                    <select onChange={(e) => returnReason(e, props.itemID, props.name, props.ImageURL)}>
                         <option value="">Select a reason...</option>
                         {returnsReasons.map((r) => <option value={r}>{r}</option>)}
                     </select> 

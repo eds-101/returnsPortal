@@ -14,6 +14,7 @@ function App() {
   
   useEffect(() => {
     setFinalOrderData(finalOrderData)
+    console.log(finalOrderData)
   }, [finalOrderData]);
 
   function populateOrder(order){      
@@ -39,7 +40,7 @@ function App() {
       <div className="App">
         { showScreen === 'Home' ? <HomeLogin getFinalisedOrder={populateOrder}/> : null }
         { showScreen === 'SelectReturn' ? <ReturnSelector loadOrder={orderData} getVerifiedItemReturns={verifiedItemReturns}/> : null} 
-        { showScreen === 'ReturnsComplete' ?  <ReturnsComplete getHomePageReturn={HomePageReturn}/> : null }
+        { showScreen === 'ReturnsComplete' ?  <ReturnsComplete getHomePageReturn={HomePageReturn} finalOrder={finalOrderData}/> : null }
       </div>
       <footer>
         <a href='https://support.tupack.co.uk/hc/en-gb'>Help and Support</a>

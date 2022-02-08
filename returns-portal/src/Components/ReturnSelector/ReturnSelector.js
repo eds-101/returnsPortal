@@ -26,6 +26,8 @@ function ReturnSelector(props) {
         customerChosenReturns.map((customerReturnItem) => { 
             if(customerReturnItem['ItemId'] === itemAndReturnObject['ItemId']){  
                 customerReturnItem['Reason'] = itemAndReturnObject['Reason']    
+                customerReturnItem['Name'] = itemAndReturnObject['Name']    
+                customerReturnItem['ImageURL'] = itemAndReturnObject['ImageURL']    
                 itemReturnIsFound = true 
             }  
         }) 
@@ -37,6 +39,8 @@ function ReturnSelector(props) {
         customerChosenReturns.map((customerReturnItem) => { 
             if(customerReturnItem['ItemId'] === itemAndQuantObject['ItemId']){  
                 customerReturnItem['Quantity'] = itemAndQuantObject['Quantity']     
+                customerReturnItem['Name'] = itemAndQuantObject['Name']    
+                customerReturnItem['ImageURL'] = itemAndQuantObject['ImageURL']    
                 itemReturnIsFound = true
             }  
         }) 

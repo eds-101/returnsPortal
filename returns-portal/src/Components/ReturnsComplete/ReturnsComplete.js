@@ -3,15 +3,20 @@ import { useState } from 'react'
 
 function ReturnsComplete(props){  
 
-    const [completedReturns, setCompletedReturns] = useState([])
+    function returnToHomePage(){props.getHomePageReturn()}
 
-    function returnToHomePage(){ props.getHomePageReturn()}
+        console.log(props.finalOrder)
 
     return(
         <div>
             <div>
                 <p>Your items have been verified for return.</p>  
-                <button onClick={returnToHomePage}>Back to returns page</button>
+                <ul>
+                    {props.finalOrder.map((product) => {
+                       return <li>{product['Name']}</li>
+                    })}
+                    <button onClick={returnToHomePage}>Back to returns page</button>
+                </ul>
             </div>
         </div>
     )
