@@ -22,22 +22,16 @@ function HomeLogin(props){
 
         e.preventDefault()  
         
-        const submittedOrderNumber = e.target[0].value.replace(/\D/g, "").trim()
-        const submittedPostcode = e.target[2].value.trim()
-        const submittedEmailAddress = e.target[1].value.trim()
+        const submittedOrderNumber = e.target[0].value.replace(/\D/g, "").trim() 
+        const submittedUserValue = e.target[1].value.trim() 
        
         try { 
             const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${API_KEY}&OrderNumber=${submittedOrderNumber}`) 
             const orderDetails = await getOrderDetails.json() 
-            console.log(orderDetails)
-            
-            const orderDateparsed = new Date(orderDetails[0].OrderDate.slice(0,10)) // Date obj from 2021-06-16T10:25:36.7951757  
-
+            const orderDateparsed = new Date(orderDetails[0].OrderDate.slice(0,10)) // Date obj from 2021-06-16T10:25:36.7951757 
             const orderEmail = orderDetails[0].Email
-            const orderPostCode = orderDetails[0].PostCode 
-            const auth = submittedEmailAddress === '' ? authenticateUser("postcode", submittedPostcode, orderPostCode) : authenticateUser("email", submittedEmailAddress, orderEmail)
-            console.log(auth, submittedEmailAddress, submittedPostcode)
-
+            const orderPostCode = orderDetails[0].PostCode  
+            const auth = submittedUserValue.includes('@') ? authenticateUser("email", submittedUserValue, orderEmail) : authenticateUser("postcode", submittedUserValue, orderPostCode) 
             if(auth) {
                 const startOrder = await fetchOrderStart(submittedOrderNumber, orderDateparsed)
                 console.log(startOrder)
