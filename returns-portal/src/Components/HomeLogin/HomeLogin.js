@@ -15,11 +15,10 @@ function HomeLogin(props){
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY 
 
     async function handleSubmit(e){
-        // Needs CORS approval when running on localhost
+
         e.preventDefault()  
         
-
-        const submittedOrderNumber = e.target[0].value.slice(3) //To ADD: or no slice if it starts with a number
+        const submittedOrderNumber = e.target[0].value.replace(/\D/g, "") 
         const submittedPostcode = e.target[2].value.trim()
         const submittedEmailAddress = e.target[1].value.trim()
        
@@ -75,7 +74,7 @@ function HomeLogin(props){
                     let id = productsRaw[i].ProductId, quantity = productsRaw[i].Quantity 
                     product['ID'] = id 
                     product['Quantity'] = quantity
-                    console.log(quantity)
+                    product['Returnable'] = true
                     product['OrderDate'] = orderDate
                     productsInOrder.push(product) 
                     product = {}
@@ -94,9 +93,10 @@ function HomeLogin(props){
             initialOrderDetails.map(async (initialProductData) => {
                 let productApiCall = await fetch(`https://api.mintsoft.co.uk/api/Product/${initialProductData['ID']}?APIKey=${API_KEY}`) 
                 let rawProductData = await productApiCall.json()  
-                product['ID'] = initialProductData['ID'] 
-                product['Quantity'] = initialProductData['Quantity']
-                product['OrderDate'] = initialProductData['OrderDate']
+                product['ID'] = initialProductData['ID']  
+                product['Returnable'] = initialProductData['Returnable']
+                product['Quantity'] = initialProductData['Quantity'] 
+                product['OrderDate'] = initialProductData['OrderDate'] 
                 product['Name'] = rawProductData.Name  
                 product['Price'] = rawProductData.Price 
                 product['ImageURL'] = rawProductData.ImageURL  
