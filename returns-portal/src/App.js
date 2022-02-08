@@ -22,14 +22,14 @@ function App() {
       setShowScreen('SelectReturn')
   }       
 
-  function verifiedItemReturns(vaild){ if(vaild){setShowScreen('ReturnsComplete')} } 
+  function verifiedItemReturns(vaild, finishedOrder){  
+    if(vaild){setShowScreen('ReturnsComplete')}   
+    setFinalOrderData(finishedOrder)
+  } 
 
   function HomePageReturn(){ setShowScreen('Home') }
 
-  function sendFinishedOrder(finishedOrder){
-    setFinalOrderData(finishedOrder)
-    console.log("finalised order: ", finalOrderData)
-  }
+ // finishedOrder
 
   return ( 
     <div className='HomeLogin'>   
@@ -38,7 +38,7 @@ function App() {
       </div> 
       <div className="App">
         { showScreen === 'Home' ? <HomeLogin getFinalisedOrder={populateOrder}/> : null }
-        { showScreen === 'SelectReturn' ? <ReturnSelector loadOrder={orderData} sendReturnedOrder={sendFinishedOrder} getVerifiedItemReturns={verifiedItemReturns}/> : null} 
+        { showScreen === 'SelectReturn' ? <ReturnSelector loadOrder={orderData} getVerifiedItemReturns={verifiedItemReturns}/> : null} 
         { showScreen === 'ReturnsComplete' ?  <ReturnsComplete getHomePageReturn={HomePageReturn}/> : null }
       </div>
       <footer>
