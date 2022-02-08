@@ -5,24 +5,14 @@ import { useState, useEffect } from 'react'
 
 function ReturnSelector(props) {     
 
-    const [listOfItemsFromOrder, setListOfItemsFromOrder] = useState([])    
+    const [allProductsInOrder, setAllProductsInOrder] = useState([])    
 
     const [customerChosenReturns, setCustomerChosenReturns] = useState([])
 
-    //return data needed
-    //POST /api/Return/CreateReturn/{OrderId}
-    //POST /api/Return/{id}/AddItem
-    //POST /api/Return/{id}/Confirm
-
-    //item id
-    //item quantity
-    //reason for return 
-
-    //quantityToReturn
-
     useEffect(() => {
-        setListOfItemsFromOrder(props.SendItemData)
-    }, [props.SendItemData])   
+        setAllProductsInOrder(props.loadOrder)
+        console.log(allProductsInOrder)  
+    }, [props.loadOrder])   
 
     useEffect(() => {
         setCustomerChosenReturns(customerChosenReturns)  
@@ -53,9 +43,6 @@ function ReturnSelector(props) {
         if(!itemReturnIsFound){ setCustomerChosenReturns(currentReturns => [...currentReturns, itemAndQuantObject]) }  
 
     }  
-
-    // Ones the customer choses the item to return it will go into the listOfReturnFromCustomer.
-
     
     function submitCustomerReturn(){
         setCustomerChosenReturns(currentReturns => currentReturns.filter((item) => item['Quantity'] >= 1)
@@ -70,10 +57,10 @@ function ReturnSelector(props) {
 
     return( 
         <div className='returnSelectorContainer'> 
-            {listOfItemsFromOrder.map((item) => {  
-                return <ItemRow key={item['ItemID']} itemID={item['ItemID']} name={item['Name']} 
-                imgURL={item['ImageURL']} quantity={item['Quantity']} 
-                price={item['Price']} returnReasonHandler={addItemAndReturnReason}
+            {allProductsInOrder.map((p) => {  
+                return <ItemRow key={p['ID']} itemID={p['ID']} name={p['Name']} 
+                imgURL={p['ImageURL']} quantity={Number(p['Quantity'])} 
+                price={p['Price']} returnReasonHandler={addItemAndReturnReason}
                 returnQuantityHandler={addItemQuantityToReturn} /> 
             })}  
             <div className='buttonContainer'>
