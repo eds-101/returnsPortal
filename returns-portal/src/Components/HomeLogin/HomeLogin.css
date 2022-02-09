@@ -39,6 +39,7 @@ input{
 .ItemHeader{
     font-family: Arial, Helvetica, sans-serif; 
     text-decoration: none; 
+    text-align: center;
     font-size: 30px; 
     margin: 0;
     padding: 0; 
