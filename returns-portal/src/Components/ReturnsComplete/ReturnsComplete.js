@@ -22,8 +22,8 @@ function ReturnsComplete(props){
                     {props.finalOrder.map((product) => {
                        return <li>{` ${product['Quantity'] > 1 ? product['Quantity'] + 'x' : ""}`} {product['Name'].slice(0,1) + product['Name'].slice(1).toLowerCase()}</li>
                     })}
-                    <button className='button' onClick={returnToHomePage}>Back to Returns page</button>
                 </ul>
+                <button className='button' onClick={returnToHomePage}>Back to Returns page</button>
             </div>
         </div>
     )

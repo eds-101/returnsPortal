@@ -30,7 +30,7 @@ function App() {
     setFinalOrderData(finishedOrder)
   } 
 
-  function HomePageReturn(){ setShowScreen('ReturnsComplete') }
+  function HomePageReturn(){ setShowScreen('Home') }
 
  // finishedOrder
 
@@ -42,8 +42,8 @@ function App() {
       <div className="App">
         { showScreen === 'SelectReturn' ? <div className='buttonContainer'><button className='button' onClick={HomePageReturn}>Back to HomeLogin</button></div> : null} 
         { showScreen === 'Home' ? <HomeLogin getFinalisedOrder={populateOrder}/> : null }
-        { showScreen === 'SelectReturn' ? <ReturnSelector loadOrder={DummyData} getVerifiedItemReturns={verifiedItemReturns}/> : null} 
-        { showScreen === 'ReturnsComplete' ?  <ReturnsComplete getHomePageReturn={HomePageReturn} finalOrder={DummyData}/> : null }
+        { showScreen === 'SelectReturn' ? <ReturnSelector loadOrder={orderData} getVerifiedItemReturns={verifiedItemReturns}/> : null} 
+        { showScreen === 'ReturnsComplete' ?  <ReturnsComplete getHomePageReturn={HomePageReturn} finalOrder={finalOrderData}/> : null }
       </div>
       <footer>
         <a href='https://support.tupack.co.uk/hc/en-gb'>Help and Support</a>
