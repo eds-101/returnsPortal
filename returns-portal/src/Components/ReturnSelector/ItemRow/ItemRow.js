@@ -24,7 +24,7 @@ function ItemRow(props) {
     const quantity = populateReturnQuantityOptions(props.quantity)
 
     function returnReason(reason, id, name, imageURL){
-        let StoringReasonAndItemID = {'ItemId': id, 'Reason': reason.target.value, 'Name': name, 'ImageURL': imageURL}  
+        let StoringReasonAndItemID = {'ItemId': id, 'Reason': reason.target.value, 'Name': name, 'ImageURL': imageURL, 'Quantity': 0}  
         props.returnReasonHandler(StoringReasonAndItemID)
     }
 

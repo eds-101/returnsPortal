@@ -12,7 +12,7 @@ function App() {
   const [finalOrderData, setFinalOrderData] = useState([])  
 
   // return back to home
-  const [showScreen, setShowScreen] = useState('SelectReturn') 
+  const [showScreen, setShowScreen] = useState('Home') 
   
   useEffect(() => {
     setFinalOrderData(finalOrderData)
