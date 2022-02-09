@@ -14,7 +14,8 @@ function ReturnSelector(props) {
     }, [props.loadOrder])   
 
     useEffect(() => {
-        setCustomerChosenReturns(customerChosenReturns)   
+        setCustomerChosenReturns(customerChosenReturns)    
+        console.log(customerChosenReturns)
     }, [customerChosenReturns])
 
     
@@ -23,7 +24,6 @@ function ReturnSelector(props) {
         let itemReturnIsFound = false
         customerChosenReturns.map((customerReturnItem) => { 
             if(customerReturnItem['ItemId'] === itemAndReturnObject['ItemId']){   
-                customerReturnItem['Quantity'] = itemAndReturnObject['Quantity']
                 customerReturnItem['Reason'] = itemAndReturnObject['Reason']    
                 customerReturnItem['Name'] = itemAndReturnObject['Name']    
                 customerReturnItem['ImageURL'] = itemAndReturnObject['ImageURL']    
@@ -48,8 +48,10 @@ function ReturnSelector(props) {
     }  
     
     function submitCustomerReturn(){ 
-        const newFIlter = customerChosenReturns.filter((item) => item['Quantity'] >= 1)  
-        if(newFIlter.length === 0){ return } 
+        const newFIlter = customerChosenReturns.filter((item) => item['Quantity'] >= 1)   
+        console.log(newFIlter)
+        if(newFIlter.length === 0){ return }  
+
         props.getVerifiedItemReturns(true, newFIlter)
     } 
 
