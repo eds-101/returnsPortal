@@ -10,10 +10,9 @@ function ReturnsComplete(props){
     return(
         <div>
             <div>
-                <p>Your items have been verified for return.</p>  
                 <ul>
                     {props.finalOrder.map((product) => {
-                       return <li>{product['Name']}</li>
+                       return <li>{` ${product['Quantity'] > 1 ? product['Quantity'] + 'x' : ""}`} {product['Name'].slice(0,1) + product['Name'].slice(1).toLowerCase()}</li>
                     })}
                     <button onClick={returnToHomePage}>Back to returns page</button>
                 </ul>
