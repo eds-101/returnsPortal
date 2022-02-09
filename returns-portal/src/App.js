@@ -40,7 +40,7 @@ function App() {
           <p className="ItemHeader">Tu Pack Returns Portal</p> 
       </div> 
       <div className="App">
-        { showScreen === 'SelectReturn' ? <div className='buttonContainer'><button className='buttonReturnItems' onClick={HomePageReturn}>Back to HomeLogin</button></div> : null}
+        { showScreen === 'SelectReturn' ? <div className='buttonContainer'><button className='button' onClick={HomePageReturn}>Back to HomeLogin</button></div> : null} 
         { showScreen === 'Home' ? <HomeLogin getFinalisedOrder={populateOrder}/> : null }
         { showScreen === 'SelectReturn' ? <ReturnSelector loadOrder={DummyData} getVerifiedItemReturns={verifiedItemReturns}/> : null} 
         { showScreen === 'ReturnsComplete' ?  <ReturnsComplete getHomePageReturn={HomePageReturn} finalOrder={finalOrderData}/> : null }

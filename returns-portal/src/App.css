@@ -10,15 +10,32 @@ body{
 
 p{
     font-family: Arial, Helvetica, sans-serif; 
+}  
+
+.App .Header{
+    width: 100%;
+}
+
+.App .buttonContainer{
+    display: flex;  
+    width: 100%; 
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center;
 } 
 
-.buttonContainer{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: start;
-    margin-top: 10px;
+.App .button{
+    padding: 10px 20px;  
+    background-color: white; 
+    border: 3px solid rgb(240, 191, 76); 
+    background-color: rgb(240, 191, 76); 
+    color: white;
+    font-style: bold; 
+    font-size: 16px;
+} 
+
+.App .button:hover{
+    background-color: white; 
+    color: rgb(240, 191, 76);
 }
 
-.App button{
-    /* justify-content: center; */
-}

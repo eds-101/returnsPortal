@@ -42,17 +42,17 @@ function ItemRow(props) {
                 <div className='itemPicture'>
                     <img src={props.imgURL} alt=""/> 
                 </div>
-            </div>
+            </div> 
             <div className='middle'>
                 <div className='returnQuantityMenu'>
-                    <h2>{props.name}</h2>
+                    <h2>{props.name}</h2> 
                         { props.returnable ? <label>How many do you want to return?</label> : null}
                         { props.returnable ? <select required onChange={(e) => returnQuantity(e, props.itemID, props.name, props.ImageURL)}>
                             {quantity.map(i => <option value={i}>{Number(i)}</option>)}
                         </select> : null}
                     </div> 
                     { props.returnable ? null : <p>Item is outside the return perirod</p>}
-                </div>
+                </div> 
             <div className='right'>
                 <div className='returnReasonsMenu'>
                 { props.returnable ? <label>Why are you returning this?</label> : null }
@@ -61,7 +61,8 @@ function ItemRow(props) {
                         {returnsReasons.map((r) => <option value={r}>{r}</option>)}
                     </select> : null }
                 </div>
-            </div>
+            </div>  
+            <hr />
         </div>
     )
 }
