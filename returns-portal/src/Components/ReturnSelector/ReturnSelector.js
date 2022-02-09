@@ -54,7 +54,8 @@ function ReturnSelector(props) {
     } 
 
     return( 
-        <div className='returnSelectorContainer'> 
+        <div className='returnSelectorContainer'>  
+        <div className='returnSelectorContainerBox'>
             {allProductsInOrder.map((p) => {  
                 return <ItemRow key={p['ID']} itemID={p['ID']} name={p['Name']} returnable={p['Returnable']}
                 imgURL={p['ImageURL']} quantity={Number(p['Quantity'])} 
@@ -63,6 +64,7 @@ function ReturnSelector(props) {
             })}  
             <div className='buttonContainer'>
                 <button onClick={submitCustomerReturn} className="buttonReturnItems">Review Items</button>
+            </div> 
             </div>
         </div>
     )

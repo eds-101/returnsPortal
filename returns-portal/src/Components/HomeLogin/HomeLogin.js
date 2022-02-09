@@ -31,6 +31,7 @@ function HomeLogin(props){
             const orderDateparsed = new Date(orderDetails[0].OrderDate.slice(0,10)) // Date obj from 2021-06-16T10:25:36.7951757 
             const orderEmail = orderDetails[0].Email
             const orderPostCode = orderDetails[0].PostCode  
+             
             const auth = submittedUserValue.includes('@') ? authenticateUser("email", submittedUserValue, orderEmail) : authenticateUser("postcode", submittedUserValue, orderPostCode) 
             if(auth) {
                 const startOrder = await fetchOrderStart(submittedOrderNumber, orderDateparsed)
@@ -116,14 +117,13 @@ function HomeLogin(props){
                     <label>Order Number</label>
                     <input type="text" placeholder="PCP17043"/> 
                 </div> 
-                {showSubmitted ?  <div className="HomeLoginFormItem">  
+                { showSubmitted ?  <div className="HomeLoginFormItem">  
                     <label>Postcode</label>
                     <input type="text" placeholder="N20JJ"/> 
                 </div> : <div className="HomeLoginFormItem">
                     <label>Email</label>
                     <input type="text" placeholder='anitane@gmail.com'/>
                 </div>  }  
-
                 { showSubmitted ? <button type="button" className='switchUserInput' onClick={switchUserInput}>Enter email instead</button> : <button className='switchUserInput' type="button" onClick={switchUserInput}>Enter postcode instead</button>}  
 
                 <button className="SubmitButton" type="submit">Submit</button> 

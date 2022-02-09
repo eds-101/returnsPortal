@@ -3,14 +3,16 @@ import './Components/HomeLogin/HomeLogin.css'
 import { useState, useEffect } from 'react'
 import HomeLogin from './Components/HomeLogin/HomeLogin'; 
 import ReturnSelector from './Components/ReturnSelector/ReturnSelector';   
-import ReturnsComplete from './Components/ReturnsComplete/ReturnsComplete'
+import ReturnsComplete from './Components/ReturnsComplete/ReturnsComplete' 
 
-// import DummyData from './Components/Data/orderData'
+import DummyData from './Components/Data/orderData'
 
 function App() {  
   const [orderData, setOrderData] = useState([]) 
-  const [finalOrderData, setFinalOrderData] = useState([]) 
-  const [showScreen, setShowScreen] = useState('Home') 
+  const [finalOrderData, setFinalOrderData] = useState([])  
+
+  // return back to home
+  const [showScreen, setShowScreen] = useState('SelectReturn') 
   
   useEffect(() => {
     setFinalOrderData(finalOrderData)
@@ -40,7 +42,7 @@ function App() {
       </div> 
       <div className="App">
         { showScreen === 'Home' ? <HomeLogin getFinalisedOrder={populateOrder}/> : null }
-        { showScreen === 'SelectReturn' ? <ReturnSelector loadOrder={orderData} getVerifiedItemReturns={verifiedItemReturns}/> : null} 
+        { showScreen === 'SelectReturn' ? <ReturnSelector loadOrder={DummyData} getVerifiedItemReturns={verifiedItemReturns}/> : null} 
         { showScreen === 'ReturnsComplete' ?  <ReturnsComplete getHomePageReturn={HomePageReturn} finalOrder={finalOrderData}/> : null }
       </div>
       <footer>
