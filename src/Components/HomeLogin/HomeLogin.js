@@ -16,7 +16,7 @@ function HomeLogin(props){
 
     function switchUserInput(){ showSubmitted ? setShowSubmitted(false) :  setShowSubmitted(true)}
 
-    const API_KEY = TPAPP || process.env.REACT_APP_WEATHER_API_KEY 
+    const API_KEY = process.env.TPAPP
 
     async function handleSubmit(e){
 
