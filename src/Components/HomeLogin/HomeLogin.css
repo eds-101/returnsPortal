@@ -1,0 +1,119 @@
+html, body{
+    height: 100%; 
+    margin: 0px;
+    padding: 0px;
+} 
+
+.HomeLogin{
+    min-height: 100vh;  
+    display: flex; 
+    width: 100%;
+    flex-direction: column;
+}
+
+label{
+    display: block; 
+    margin-bottom: 7.5px; 
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 20px;
+} 
+
+input{
+    display: block;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 16px;  
+    width: 200px;
+    border: 2px solid rgb(240, 191, 76);
+} 
+
+.Header{
+    width: 100%; 
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    height: 70px; 
+    background-color: rgb(240, 191, 76);
+} 
+
+.ItemHeader{
+    font-family: Arial, Helvetica, sans-serif; 
+    text-decoration: none; 
+    text-align: center;
+    font-size: 30px; 
+    margin: 0;
+    padding: 0; 
+    color: white;
+} 
+
+.Info{
+    text-align: center; 
+    margin-top: 60px; 
+    padding: 0;  
+    font-size: 18px;
+    color: black;
+    opacity: 0.6;
+}
+ 
+.HomeLoginForm{
+    width: 100%;  
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+} 
+
+.HomeLoginFormItem{
+    margin: 15px 0px;
+}  
+
+.SubmitButton{ 
+    margin-top: 30px;
+    padding: 10px 20px; 
+    background-color: white; 
+    border: 3px solid rgb(240, 191, 76); 
+    background-color: rgb(240, 191, 76); 
+    color: white;
+    font-style: bold; 
+    font-size: 16px;
+}  
+
+.switchUserInput{
+    background-color: white; 
+    border: none; 
+    font-size: 16px; 
+    color:	rgb(65,105,225);
+    margin-top: 10px;
+} 
+
+.switchUserInput:hover{
+    color: rgb(240, 191, 76);
+}
+
+.SubmitButton:hover{
+    background-color: white; 
+    color: rgb(240, 191, 76);
+} 
+
+footer{
+    width: 100%;
+    height: 50px;
+    background-color: rgb(240, 191, 76); 
+    margin-top: auto;  
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}  
+
+footer a{
+    text-decoration: none; 
+    font-family: Arial, Helvetica, sans-serif;  
+    color: black;
+}
+
+.IncorrectDetails {
+    /* display: none */
+}
+
+

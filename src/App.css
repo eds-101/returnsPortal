@@ -1,0 +1,41 @@
+html{
+    margin: 0;
+    padding: 0;
+} 
+
+body{
+    margin: 0;
+    padding: 0;
+} 
+
+p{
+    font-family: Arial, Helvetica, sans-serif; 
+}  
+
+.App .Header{
+    width: 100%;
+}
+
+.App .buttonContainer{
+    display: flex;  
+    width: 100%; 
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center;
+} 
+
+.App .button{
+    padding: 10px 20px;  
+    background-color: white; 
+    border: 3px solid rgb(240, 191, 76); 
+    background-color: rgb(240, 191, 76); 
+    color: white;
+    font-style: bold; 
+    font-size: 16px;
+} 
+
+.App .button:hover{
+    background-color: white; 
+    color: rgb(240, 191, 76);
+}
+
