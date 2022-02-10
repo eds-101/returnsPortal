@@ -17,7 +17,7 @@ function HomeLogin(props){
     function switchUserInput(){ showSubmitted ? setShowSubmitted(false) :  setShowSubmitted(true)}
 
     const API_KEY = process.env.TPAPP
-    console.log("API_KEY")
+    console.log(API_KEY)
 
     async function handleSubmit(e){
 
