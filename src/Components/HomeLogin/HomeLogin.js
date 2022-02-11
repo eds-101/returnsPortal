@@ -27,7 +27,9 @@ function HomeLogin(props){
         const submittedUserValue = e.target[1].value.trim() 
        
         try { 
-            const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${API_KEY}&OrderNumber=${submittedOrderNumber}`) 
+            const getOrderDetails = await fetch(`https://api.mintsoft.co.uk/api/Order/Search?APIKey=${API_KEY}&OrderNumber=${submittedOrderNumber}`, {
+                headers: { 'Content-Type': 'application/json' }
+            }) 
             const orderDetails = await getOrderDetails.json() 
             const orderDateparsed = new Date(orderDetails[0].OrderDate.slice(0,10)) // Date obj from 2021-06-16T10:25:36.7951757 
             const orderEmail = orderDetails[0].Email
